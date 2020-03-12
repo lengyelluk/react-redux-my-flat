@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb://admin:beatlesPD007@ds115166.mlab.com:15166/heroku_c9cw8rb5",
+    "jwtSecret": "my_flat_app_jwt_secret"
+}
