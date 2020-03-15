@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 const UserSchema = new Schema({
   username: {
     type: String,
-    unique: true,
+    unique: false,
     trim: true,
     index: {unique: true},
     minlength: 3,

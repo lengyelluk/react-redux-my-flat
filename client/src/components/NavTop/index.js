@@ -1,17 +1,63 @@
-import {Button } from 'semantic-ui-react'
+import {Button, Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
-import React from 'react'
+import React, { PureComponent, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { selectIsAuthenticated, getUser } from '../../reducer/auth/reducer'
+import './style.css'
 
-export default function NavTop(props) {
-	return (
-		<div>
-			<Button as={Link} to="/" onClick={props.closeNav}>Home</Button>
-			<Button as={Link} to="/willBeAdded" onClick={props.closeNav}>Login</Button>
-			<Button as={Link} to="/register" onClick={props.closeNav}>Register</Button>
-			<Button as={Link} to="/addCard" onClick={props.closeNav}>Rent out a room</Button>
-			<Button as={Link} to="/cards" onClick={props.closeNav}>Find a room</Button>
-			<Button as={Link} to="/about" onClick={props.closeNav}>About us</Button>
-			<Button as={Link} to="/willBeAdded" onClick={props.closeNav}>Contact</Button>
-		</div>
-	)
+
+class NavTop extends PureComponent {
+	render() {
+		const { isAuthenticated, user } = this.props;
+
+		const authLinks = (
+			<Fragment>
+				<Button as={Link} to="/logout" >Logout</Button>
+			</Fragment>
+		);
+
+		const guestLinks = (
+			<Fragment>
+				<Button as={Link} to="/login" >Login</Button>
+				<Button as={Link} to="/register" >Register</Button>
+			</Fragment>
+		);
+			console.log('user: ', user);
+		return (
+			<Menu>
+				<Menu.Item header>
+					<span>
+					{ user ? `Welcome ${user}`: null}
+					</span>
+				</Menu.Item>
+				<Menu.Item
+					as={Link} to="/" >Home
+				</Menu.Item>
+				<Menu.Item link
+					as={Link} to="/addCard" >Rent out a room
+				</Menu.Item>
+				<Menu.Item>
+					<Button as={Link} to="/cards" >Find a room</Button>
+				</Menu.Item>
+				<Menu.Item>
+					<Button as={Link} to="/about" >About us</Button>
+				</Menu.Item>
+				<Menu.Item>
+					<Button as={Link} to="/willBeAdded" >Contact</Button>
+				</Menu.Item>
+				<Menu.Item>
+					{ isAuthenticated ? authLinks : guestLinks }
+				</Menu.Item>
+			</Menu>
+		)
+	}
 }
+
+const mapStateToProps = state => {
+	return {
+		isAuthenticated: selectIsAuthenticated(state),
+		user: getUser(state)
+    }
+};
+
+export default connect(mapStateToProps, null)(NavTop);

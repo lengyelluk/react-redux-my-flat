@@ -1,95 +1,96 @@
+import axios from 'axios';
 import { userConstants } from '../_constants';
-import { userService } from '../_services';
-import { alertActions } from './';
-import { history } from '../_helpers';
+import { returnErrors } from '../_actions/error.actions';
 
-export const userActions = {
-    login,
-    logout,
-    register,
-    getAll,
-    delete: _delete
+export const loadUser = () => (dispatch, getState) => {
+    //user loading
+    dispatch({ type: userConstants.USER_LOADING });
+
+    axios.get('/users/auth', tokenConfig(getState))
+        .then(res => dispatch({
+            type: userConstants.USER_LOADED,
+            payload: res.data
+            })
+        )
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: userConstants.AUTH_ERROR
+            });
+        });
 };
 
-function login(username, password) {
-    return dispatch => {
-        dispatch(request({ username }));
+export const register = ({ username, email, password }) => dispatch => {
+    //header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
 
-        userService.login(username, password)
-            .then(
-                user => { 
-                    dispatch(success(user));
-                    history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
+    //body
+    const body = JSON.stringify({ username, email, password });
+    
+    axios.post('/users/registration', body, config)
+        .then(res => dispatch({
+            type: userConstants.REGISTER_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+            dispatch({
+                type: userConstants.REGISTER_FAIL
+            });
+        });
+} 
+
+export const login = ({ email, password }) => dispatch => {
+    //header
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    //body
+    const body = JSON.stringify({ email, password });
+    
+    axios.post('/users/login', body, config)
+        .then(res => dispatch({
+            type: userConstants.LOGIN_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
+            dispatch({
+                type: userConstants.LOGIN_FAIL
+            });
+        });
+};
+
+export const logout = () => {
+    return {
+        type: userConstants.LOGOUT_SUCCESS
     };
+};
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
-}
 
-function logout() {
-    userService.logout();
-    return { type: userConstants.LOGOUT };
-}
+//setup config/headers + token
+export const tokenConfig = getState => {
+    //get token from local storage
+    const token = getState().auth.token;
 
-function register(user) {
-    return dispatch => {
-        dispatch(request(user));
+    //prepare header
+    const config = {
+        headers: {
+            'Content-type': 'application/json'
+        }
+    }
 
-        userService.register(user)
-            .then(
-                user => { 
-                    dispatch(success());
-                    history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
-    };
+    //if token add to header
+    if(token) {
+        config.headers['x-auth-token'] = token;
+    }
 
-    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
-}
-
-function getAll() {
-    return dispatch => {
-        dispatch(request());
-
-        userService.getAll()
-            .then(
-                users => dispatch(success(users)),
-                error => dispatch(failure(error.toString()))
-            );
-    };
-
-    function request() { return { type: userConstants.GETALL_REQUEST } }
-    function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
-    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
-}
-
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    return dispatch => {
-        dispatch(request(id));
-
-        userService.delete(id)
-            .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
-            );
-    };
-
-    function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+    return config;
 }

@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist'
 
 const initialState = {
     accessToken: null,
-    isAuthenticated: true
+    isAuthenticated: false
 }
 
 export default persistReducer({

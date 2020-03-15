@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { selectIsAuthenticated } from '../reducer/authentication'
+import { selectIsAuthenticated } from '../reducer/auth/reducer'
 
 import React, { PureComponent } from 'react'
 

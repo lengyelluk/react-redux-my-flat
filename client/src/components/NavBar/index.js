@@ -1,21 +1,49 @@
-import React from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { selectIsAuthenticated } from '../../reducer/auth/reducer'
 
 import './style.css'
 
-export default function NavBar(props) {
-	return (
-		<div id="navBar" className="overlay">
-			<a className="closeBtn" onClick={props.closeNav}>&times;</a>
+
+class NavBar extends PureComponent {
+	
+	render() {
+		const { closeNav, isAuthenticated } = this.props;
+
+		const authLinks = (
+			<Fragment>
+				<Link to="/logout" onClick={closeNav}>Logout</Link>
+			</Fragment>
+		);
+
+		const guestLinks = (
+			<Fragment>
+				<Link to="/login" onClick={closeNav}>Login</Link>
+				<Link to="/register" onClick={closeNav}>Register</Link>
+			</Fragment>
+		);
+
+		return (
+			<div id="navBar" className="overlay">
+			<a className="closeBtn" onClick={closeNav}>&times;</a>
 			<div className="overlay-content">
-				<Link to="/" onClick={props.closeNav}>Home</Link>
-				<Link to="/willBeAdded" onClick={props.closeNav}>Login</Link>
-				<Link to="/register" onClick={props.closeNav}>Register</Link>
-				<Link to="/addCard" onClick={props.closeNav}>Rent out a room</Link>
-				<Link to="/cards" onClick={props.closeNav}>Find a room</Link>
-				<Link to="/about" onClick={props.closeNav}>About us</Link>
-				<Link to="/willBeAdded" onClick={props.closeNav}>Contact</Link>
+				<Link to="/" onClick={closeNav}>Home</Link>
+				{ isAuthenticated ? authLinks : guestLinks }
+				<Link to="/addCard" onClick={closeNav}>Rent out a room</Link>
+				<Link to="/cards" onClick={closeNav}>Find a room</Link>
+				<Link to="/about" onClick={closeNav}>About us</Link>
+				<Link to="/willBeAdded" onClick={closeNav}>Contact</Link>
 			</div>
 		</div>
-	)
+		)
+	}
 }
+
+const mapStateToProps = state => {
+	return {
+        isAuthenticated: selectIsAuthenticated(state)
+    }
+};
+
+export default connect(mapStateToProps, null)(NavBar);

@@ -27,9 +27,6 @@ app.use(session({
 	store: new MongoStore({mongooseConnection: mongoose.connection}),
 }));
 
-app.use(auth.initialize);
-app.use(auth.session);
-//app.use(auth.setUser);
 
 app.use(async (req, res, next) => {
 	try {

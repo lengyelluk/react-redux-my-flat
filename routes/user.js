@@ -1,22 +1,60 @@
-import { Router } from 'express';
+	import { Router } from 'express';
 import passport from 'passport';
 import User from '../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config';
+import auth from '../lib/auth';
 
 const router = Router();
 
 //login
-router.post('/login', passport.authenticate('local',{
-	successRedirect: '/',
-	failureRedirect: '/users/login?error=true',
-}));
+router.post('/login', (req, res) => {
+	const { email, password } = req.body;
 
+	//simple validation
+	if(!email || !password) {
+		return res.status(400).json({msg: 'Please enter all fields'});
+	}
+
+	User.findOne({ email })
+		.then(user => {
+			if(!user) return res.status(400).json({ msg: 'User does not exist' }); 
+		
+			//validate password
+			bcrypt.compare(password, user.password)
+				.then(isMatch => {
+					if(!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+					
+					jwt.sign(
+						{ id: user.id },
+						process.env.JWT_SECRET,
+						{ expiresIn: 3600 },
+						(err, token) => {
+							if(err) throw err;
+							
+							res.json({
+								token,
+								user: {
+									id: user.id,
+									username: user.username,
+									email: user.email
+								}
+							})
+					})
+			})	
+	});
+})
 //logout
 router.get('/logout', (req, res) => {
 	req.logout();
 	return res.redirect('/');
+});
+
+router.get('/auth', auth, (req, res) => {
+	User.findById(req.user.id)
+		.select('-password')
+		.then(user => res.json(user));
 });
 
 

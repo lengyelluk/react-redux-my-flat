@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import auth from '../lib/auth';
 
 const router = Router();
 
@@ -7,14 +8,14 @@ router.get('/', async (req, res) => {
   	return res.send(cards);
 });
 
-router.get('/:cardId', async (req, res) => {
+router.get('/:cardId', auth, async (req, res) => {
 	const card = await req.context.models.Card.findById(
 		req.params.cardId,
 	); 
   	return res.send(card);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const card = await req.context.models.Card.create({
     title: req.body.title,
     district: req.body.district,
