@@ -38,7 +38,6 @@
     "rootpath": "^0.1.2"
   },
   "devDependencies": {
-    "jest": "^25.1.0",
     "nodemon": "^1.19.1",
     "uuid": "^3.4.0"
   }
