@@ -15,28 +15,28 @@ import { LOGOUT } from '../../screen/Logout'
 class AuthenticatedRouter extends PureComponent {
     render() {
         return (
-            <>
             <Router>
-                <MenuLayout>
+                <TopNavBarLayout>
                     <Switch>
-                        <Route exact path={ABOUT} component={AboutScreen} />
-                        <Route exact path={REGISTER} component={RegisterScreen} />
+                        <Route exact path={HOME} component={HomeScreen} />
                         <Route exact path={ADD_FLAT} component={AddFlatScreen} />
                         <Route exact path={FLAT_LIST} component={FlatListScreen} />
-                        <Route exact path={HOME} component={HomeScreen} />
                         <Route path={FLAT_DETAIL} component={FlatDetailScreen}/>
+                        <Route exact path={ABOUT} component={AboutScreen} />
+                        <Route exact path={LOGOUT} component={LogoutScreen}/>
+                    </Switch>
+                </TopNavBarLayout>
+                <MenuLayout>
+                    <Switch>
+                        <Route exact path={HOME} component={HomeScreen} />
+                        <Route exact path={ADD_FLAT} component={AddFlatScreen} />
+                        <Route exact path={FLAT_LIST} component={FlatListScreen} />
+                        <Route path={FLAT_DETAIL} component={FlatDetailScreen}/>
+                        <Route exact path={ABOUT} component={AboutScreen} />
                         <Route exact path={LOGOUT} component={LogoutScreen}/>
                     </Switch>
                 </MenuLayout>
             </Router>
-            <Router>
-                <TopNavBarLayout>
-                    <Switch>
-                        <Route exact path={ADD_FLAT} component={AddFlatScreen} />
-                    </Switch>
-                </TopNavBarLayout>
-            </Router>
-            </>
         )
     }
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import logo from '../../assets/images/logo.png'
 import { NavBar } from '../../components'
 import './style.css'
+import TopNavBarLayout from '../TopNavBarLayout';
 
 function closeNav() {
     document.getElementById("navBar").style.width = "0%";
@@ -23,11 +24,10 @@ function toggleLogo() {
 export default function MenuLayout(props) {
     return (
         <div>
-            <header className="menu-layout-header">
-                <img src={logo} alt="logo" className='static-logo' onMouseEnter={toggleLogo} onMouseLeave={toggleLogo} onClick={openNav}/>
-                <h1 className='menu-hidden' id="h1-menu-tag" onClick={openNav}>Menu</h1>
+           
+                <img src={logo} alt="logo" className='static-logo' onClick={openNav}/>
                 <NavBar closeNav={closeNav} />
-            </header>
+           
             {props.children}
         </div>
     )

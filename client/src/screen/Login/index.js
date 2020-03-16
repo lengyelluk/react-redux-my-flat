@@ -58,7 +58,8 @@ class LoginScreen extends PureComponent {
         return (
                 <Form onSubmit={this.onSubmit}>
                     <h1>Login</h1>
-                    <h2>{this.state.msg ? <span>{this.state.msg}</span> : null}</h2>
+                    <h3>You must log in to view the page</h3>
+                    <p>{this.state.msg ? <span>{this.state.msg}</span> : null}</p>
                     <Form.Group>	
                         <Form.Field
                         name='email'>
