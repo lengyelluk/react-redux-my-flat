@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- 12
+script:
+- npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: 
+  app: new-my-flat-app
