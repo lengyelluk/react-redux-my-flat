@@ -149,7 +149,6 @@ class FlatListScreen extends PureComponent {
         return (
             <>
                 <h1>Find a Room</h1>
-                <h3>Only City District filter working</h3>
                 <Form>
                     <Form.Group inline>
                         <Form.Field label='City District'
