@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.1",
+    "react-test-renderer": "^16.13.1",
     "uuid": "^3.4.0"
   }
 }
