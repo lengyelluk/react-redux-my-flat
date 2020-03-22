@@ -34,14 +34,11 @@ class FlatListScreen extends PureComponent {
     }
 
     async componentDidMount() {
-        //const data = await cardService.getAll();
-        //console.log('data in flat list: ', data);
-        //this.setState({
-         //   cards: data,
-          //  filteredCards: data,
-        //})
-        this.props.getCards();
-        console.log('this props ', this.props.card.cards);
+        const data = await cardService.getAll();
+        this.setState({
+            cards: data,
+            filteredCards: data,
+        })
     }
 
     updateCards() {
@@ -205,7 +202,7 @@ class FlatListScreen extends PureComponent {
 								 </Button>
                     </Form.Group>
                 </Form>
-                <CardList cards={this.props.card.cards} />
+                <CardList cards={this.state.filteredCards} />
             </>
         )
     }

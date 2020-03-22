@@ -4,7 +4,7 @@ import './style.css'
 
 export default function CardList(props) {
 	const cards = props.cards
-	console.log("card list", cards)
+	
 	return (
 		<div className='grid'>
 			{cards && cards.map(renderCard)}
@@ -13,7 +13,7 @@ export default function CardList(props) {
 }
 
 function renderCard(card, key) {
-	console.log(card);
+	
 	return (
 		<div className='container' key={key}>
 			<Link to={`/cards/${card._id}`}>

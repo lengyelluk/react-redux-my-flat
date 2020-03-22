@@ -30,8 +30,8 @@ class NavBar extends PureComponent {
 			<div className="overlay-content">
 				<Link to="/" onClick={closeNav}>Home</Link>
 				{ isAuthenticated ? authLinks : guestLinks }
-				<Link to="/addCard" onClick={closeNav}>Rent out a room</Link>
-				<Link to="/cards" onClick={closeNav}>Find a room</Link>
+				<Link to="/addFlat" onClick={closeNav}>Rent out a room</Link>
+				<Link to="/flatList" onClick={closeNav}>Find a room</Link>
 				<Link to="/about" onClick={closeNav}>About us</Link>
 				<Link to="/willBeAdded" onClick={closeNav}>Contact</Link>
 			</div>

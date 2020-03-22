@@ -42,10 +42,10 @@ class NavTop extends PureComponent {
 							as={Link} to="/" >Home
 						</Menu.Item>
 						<Menu.Item
-							as={Link} to="/addCard" >Rent out a room
+							as={Link} to="/addFlat" >Rent out a room
 						</Menu.Item>
 						<Menu.Item
-							as={Link} to="/cards" >Find a room
+							as={Link} to="/flatList" >Find a room
 						</Menu.Item>
 						<Menu.Item
 							as={Link} to="/willBeAdded" >Contact
