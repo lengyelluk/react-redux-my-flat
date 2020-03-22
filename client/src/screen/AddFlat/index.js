@@ -73,59 +73,69 @@ class AddFlatScreen extends PureComponent {
             case 1:
                 return (
                         <>
-                            <FlatDetails
-                                nextStep={this.nextStep}
-                                handleChange={this.handleChange}
-                                values={values}
-                            />
+                            <div className='content-addFlat'>
+                                <FlatDetails
+                                    nextStep={this.nextStep}
+                                    handleChange={this.handleChange}
+                                    values={values}
+                                />
+                            </div>
                             <ProgressBar percent={percent}/>
                         </>
                         )
             case 2:
                 return (
                         <>
-                            <FlatmateDetails
-                                nextStep={this.nextStep}
-                                prevStep={this.prevStep}
-                                handleChange={this.handleChange}
-                                values={values}
-                            />
+                            <div className='content-addFlat'>
+                                <FlatmateDetails
+                                    nextStep={this.nextStep}
+                                    prevStep={this.prevStep}
+                                    handleChange={this.handleChange}
+                                    values={values}
+                                />
+                            </div>
                             <ProgressBar percent={percent}/>
                         </>
                         )
             case 3:
                 return (
                     <>
-                        <PreferredFlatmateDetails
-                            nextStep={this.nextStep}
-                            prevStep={this.prevStep}
-                            handleChange={this.handleChecked}
-                            values={values}
-                        />
+                        <div className='content-addFlat'>
+                            <PreferredFlatmateDetails
+                                nextStep={this.nextStep}
+                                prevStep={this.prevStep}
+                                handleChange={this.handleChecked}
+                                values={values}
+                            />
+                        </div>
                         <ProgressBar percent={percent}/>
                     </>
                         )
             case 4:
                 return (
                     <>	
-                        <RentDetails
-                            nextStep={this.nextStep}
-                            prevStep={this.prevStep}
-                            handleChange={this.handleChange}
-                            handleDate={this.handleDate}
-                            values={values}
-                        />
+                        <div className='content-addFlat'>
+                            <RentDetails
+                                nextStep={this.nextStep}
+                                prevStep={this.prevStep}
+                                handleChange={this.handleChange}
+                                handleDate={this.handleDate}
+                                values={values}
+                            />
+                        </div>
                         <ProgressBar percent={percent}/>
                     </>
                     )
             case 5:
                 return (
                     <> 
-                        <Confirmation
-                            nextStep={this.nextStep}
-                            prevStep={this.prevStep}
-                            values={values}
-                        />
+                        <div className='content-addFlat'>
+                            <Confirmation
+                                nextStep={this.nextStep}
+                                prevStep={this.prevStep}
+                                values={values}
+                            />
+                        </div>
                         <ProgressBar percent={percent}/>
                     </>
                     )

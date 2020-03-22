@@ -6,6 +6,7 @@ import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
 import { register } from '../../_actions/user.actions';
 import { clearErrors } from '../../_actions/error.actions';
+import './style.css';
 
 class RegisterScreen extends PureComponent {
 	constructor(props) {
@@ -55,40 +56,42 @@ class RegisterScreen extends PureComponent {
 
     render() {
         return (
-                <Form onSubmit={this.onSubmit}>
-                    <h1>Registration</h1>
-                    <h2>{this.state.msg ? <span>{this.state.msg}</span> : null}</h2>
-                    <Form.Group>
-                        <Form.Field
-                        name='username'>
-                            <label>Name</label>
-                            <Form.Input
-                                placeholder='John'
-                                name='username'
-                                onChange={this.onChange}
-                                />
-                        </Form.Field>	
-                        <Form.Field
-                        name='email'>
-                            <label>Email</label>
-                            <Form.Input
-                                placeholder='john.smith@email.com'
-                                name='email'
-                                onChange={this.onChange}
-                                />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Password</label>
-                            <Form.Input
-                                type='password'
-                                name='password'
-                                placeholder='Super secret password'
-                                onChange={this.onChange}
-                                />
-                        </Form.Field>
-                    </Form.Group>
-                    <Button>Register</Button>
-                </Form>
+                <div className='content-register'>
+                    <Form onSubmit={this.onSubmit}>
+                        <h1>Registration</h1>
+                        <h2>{this.state.msg ? <span>{this.state.msg}</span> : null}</h2>
+                        <Form.Group>
+                            <Form.Field
+                            name='username'>
+                                <label>Name</label>
+                                <Form.Input
+                                    placeholder='John'
+                                    name='username'
+                                    onChange={this.onChange}
+                                    />
+                            </Form.Field>	
+                            <Form.Field
+                            name='email'>
+                                <label>Email</label>
+                                <Form.Input
+                                    placeholder='john.smith@email.com'
+                                    name='email'
+                                    onChange={this.onChange}
+                                    />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Password</label>
+                                <Form.Input
+                                    type='password'
+                                    name='password'
+                                    placeholder='Super secret password'
+                                    onChange={this.onChange}
+                                    />
+                            </Form.Field>
+                        </Form.Group>
+                        <Button>Register</Button>
+                    </Form>
+                </div>
         )
     }
 }

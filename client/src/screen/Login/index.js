@@ -6,6 +6,7 @@ import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
 import { login } from '../../_actions/user.actions';
 import { clearErrors } from '../../_actions/error.actions';
+import './style.css'
 
 class LoginScreen extends PureComponent {
 	constructor(props) {
@@ -55,34 +56,35 @@ class LoginScreen extends PureComponent {
     }
 
     render() {
-        
         return (
-                <Form onSubmit={this.onSubmit}>
-                    <h1>Login</h1>
-                    <h3>You must log in to view the page</h3>
-                    <p>{this.state.msg ? <span>{this.state.msg}</span> : null}</p>
-                    <Form.Group>	
-                        <Form.Field
-                        name='email'>
-                            <label>Email</label>
-                            <Form.Input
-                                placeholder='john.smith@email.com'
-                                name='email'
-                                onChange={this.onChange}
-                                />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Password</label>
-                            <Form.Input
-                                type='password'
-                                name='password'
-                                placeholder='Super secret password'
-                                onChange={this.onChange}
-                                />
-                        </Form.Field>
-                    </Form.Group>
-                    <Button>Login</Button>
-                </Form>
+                <div className='content-login'>
+                    <Form onSubmit={this.onSubmit}>
+                        <h1>Login</h1>
+                        <h3>You must log in to view the page</h3>
+                        <p>{this.state.msg ? <span>{this.state.msg}</span> : null}</p>
+                        <Form.Group>	
+                            <Form.Field
+                            name='email'>
+                                <label>Email</label>
+                                <Form.Input
+                                    placeholder='john.smith@email.com'
+                                    name='email'
+                                    onChange={this.onChange}
+                                    />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Password</label>
+                                <Form.Input
+                                    type='password'
+                                    name='password'
+                                    placeholder='Super secret password'
+                                    onChange={this.onChange}
+                                    />
+                            </Form.Field>
+                        </Form.Group>
+                        <Button>Login</Button>
+                    </Form>
+                </div>
         )
     }
 }
