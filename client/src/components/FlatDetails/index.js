@@ -26,17 +26,17 @@ class FlatDetails extends PureComponent {
 						onChange={this.props.handleChange('district')}
 						defaultValue={values.district}
 						>
-						<option value='Stare Mesto'>Stare Mesto</option>
-						<option value='Ruzinov'>Ruzinov</option>
-						<option value='Vrakuna'>Vrakuna</option>
-						<option value='Podunajske Biskupice'>Podunajske Biskupice</option>
-						<option value='Nove Mesto'>Nove Mesto</option>
-						<option value='Raca'>Raca</option>
+						<option value='Stare Mesto'>Staré Mesto</option>
+						<option value='Ruzinov'>Ružinov</option>
+						<option value='Vrakuna'>Vrakuňa</option>
+						<option value='Podunajske Biskupice'>Podunajské Biskupice</option>
+						<option value='Nove Mesto'>Nové Mesto</option>
+						<option value='Raca'>Rača</option>
 						<option value='Vajnory'>Vajnory</option>
 						<option value='Karlova Ves'>Karlova Ves</option>
-						<option value='Dubravka'>Dubravka</option>
-						<option value='Lamac'>Lamac</option>
-						<option value='Devinska Nova Ves'>Devinska Nova Ves</option>
+						<option value='Dubravka'>Dúbravka</option>
+						<option value='Lamac'>Lamač</option>
+						<option value='Devinska Nova Ves'>Devínska Nová Ves</option>
 					</Form.Field>
 					<Form.Field>
 						<label>Street</label>

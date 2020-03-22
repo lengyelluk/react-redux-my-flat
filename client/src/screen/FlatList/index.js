@@ -156,17 +156,17 @@ class FlatListScreen extends PureComponent {
                             onChange={this.updateDistrict}
                         >
                             <option value=''></option>
-                            <option value='Staré Mesto'>Staré Mesto</option>
-                            <option value='Ružinov'>Ružinov</option>
-                            <option value='Vrakuňa'>Vrakuňa</option>
-                            <option value='Podunajské Biskupice'>Podunajské Biskupice</option>
-                            <option value='Nové Mesto'>Nové Mesto</option>
-                            <option value='Rača'>Rača</option>
+                            <option value='Stare Mesto'>Staré Mesto</option>
+                            <option value='Ruzinov'>Ružinov</option>
+                            <option value='Vrakuna'>Vrakuňa</option>
+                            <option value='Podunajske Biskupice'>Podunajské Biskupice</option>
+                            <option value='Nove Mesto'>Nové Mesto</option>
+                            <option value='Raca'>Rača</option>
                             <option value='Vajnory'>Vajnory</option>
                             <option value='Karlova Ves'>Karlova Ves</option>
-                            <option value='Dúbravka'>Dúbravka</option>
-                            <option value='Lamač'>Lamač</option>
-                            <option value='Devínska Nová Ves'>Devínska Nová Ves</option>
+                            <option value='Dubravka'>Dúbravka</option>
+                            <option value='Lamac'>Lamač</option>
+                            <option value='Devinska Nova Ves'>Devínska Nová Ves</option>
                         </Form.Field>
                         <Form.Field inline>
                             <label>Max num of flatmates</label>

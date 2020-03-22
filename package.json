@@ -9,7 +9,6 @@
     "server": "node -r esm server.js",
     "heroku-postbuild": "cd ./client && npm install && npm run build",
     "client": "npm start --prefix client",
-    "test": "jest",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],

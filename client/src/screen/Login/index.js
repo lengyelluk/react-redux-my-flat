@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import React, { PureComponent } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { Register } from '../../components'
@@ -38,7 +38,7 @@ class LoginScreen extends PureComponent {
         }
     }
 
-
+    
 	onChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	}
@@ -55,6 +55,7 @@ class LoginScreen extends PureComponent {
     }
 
     render() {
+        
         return (
                 <Form onSubmit={this.onSubmit}>
                     <h1>Login</h1>
@@ -91,5 +92,5 @@ const mapStateToProps = state => ({
 	error: state.error
 });
 
-export default connect(mapStateToProps,{ login, clearErrors })(LoginScreen)
+export default connect(mapStateToProps,{ login, clearErrors })(withRouter(LoginScreen))
 export const LOGIN = "/login"
