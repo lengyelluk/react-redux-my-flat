@@ -14,42 +14,39 @@ class AboutScreen extends PureComponent {
                 <br></br>
                 <p><strong>Shift-left == test early && test often.</strong></p> 
                 <br></br>
-                <p className='float-left'>Technology stack used</p>
+                <p className='float-left'></p>
                 <br></br>
-                <List>
+                <List divided verticalAlign='middle'>
+                    <List.Item>
+                        <List.Content floated='left'>
+                        <strong>Technology stack used</strong>
+                        </List.Content>
+                        <List.Content floated='right'>
+                        <strong>Type of automated tests used during development</strong>
+                        </List.Content>
+                    </List.Item>
                     <List.Item>
                         <List.Content floated='left'>
                         Built using <strong>MERN stack</strong> (MongoDB, ExpressJS, ReactJS, NodeJS)
+                        </List.Content>
+                        <List.Content floated='right'>
+                            <strong>Unit tests</strong> - executed after each push to common repository
                         </List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Content floated='left'>
                             Deployed using <strong>Heroku</strong> and <strong>Travis CI</strong>
                         </List.Content>
+                        <List.Content floated='right'>
+                            <strong>API tests</strong> - each service tested with automated tests
+                        </List.Content>
                     </List.Item>
                     <List.Item>
                         <List.Content floated='left'>
                             Tests written in <strong>Jest</strong> and <strong>Selenium</strong>
                         </List.Content>
-                    </List.Item>
-                </List>
-
-                <p className='float-left'>Type of automated tests used during development</p>
-                <br></br>
-                <List>
-                    <List.Item>
-                        <List.Content floated='left'>
-                            <strong>Unit tests</strong> - For each component unit tests were written which were executed after each push to common repository
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <List.Content floated='left'>
-                            <strong>API tests</strong> - For each service, automated tests were written to verify API calls
-                        </List.Content>
-                    </List.Item>
-                    <List.Item>
-                        <List.Content floated='left'>
-                            <strong>UI tests</strong> - After each deployment, UI automated tests were executed to verify E2E functionality
+                        <List.Content floated='right'>
+                            <strong>UI tests</strong> - to verify E2E functionality after each deployment
                         </List.Content>
                     </List.Item>
                 </List>
