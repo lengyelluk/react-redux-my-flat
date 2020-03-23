@@ -34,6 +34,7 @@ class NavTop extends PureComponent {
 		);
 			console.log('user: ', user);
 		return (
+				
 					<Menu className='navbar'>
 						<Menu.Item header>
 							My Flat App
@@ -55,6 +56,7 @@ class NavTop extends PureComponent {
 						</Menu.Item>
 							{ isAuthenticated ? authLinks : guestLinks }	
 					</Menu>
+				
 		)
 	}
 }
