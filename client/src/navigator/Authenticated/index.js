@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { AboutScreen, AddFlatScreen, FlatDetailScreen, FlatListScreen, HomeScreen, RegisterScreen, LogoutScreen } from '../../screen'
+import { AboutScreen, AddFlatScreen, FlatDetailScreen, FlatListScreen, HomeScreen, RegisterScreen, LogoutScreen, ContactScreen } from '../../screen'
 import { MenuLayout, TopNavBarLayout } from '../../layout'
 
 import { ABOUT } from '../../screen/About'
@@ -11,6 +11,7 @@ import { FLAT_LIST } from '../../screen/FlatList'
 import { HOME } from '../../screen/Home'
 import { REGISTER } from '../../screen/Register'
 import { LOGOUT } from '../../screen/Logout'
+import { CONTACT } from '../../screen/Contact'
 
 class AuthenticatedRouter extends PureComponent {
     render() {
@@ -22,6 +23,7 @@ class AuthenticatedRouter extends PureComponent {
                         <Route exact path={ADD_FLAT} component={AddFlatScreen} />
                         <Route exact path={FLAT_LIST} component={FlatListScreen} />
                         <Route path={FLAT_DETAIL} component={FlatDetailScreen}/>
+                        <Route exact path={CONTACT} component={ContactScreen} />
                         <Route exact path={ABOUT} component={AboutScreen} />
                         <Route exact path={LOGOUT} component={LogoutScreen}/>
                     </Switch>
@@ -32,6 +34,7 @@ class AuthenticatedRouter extends PureComponent {
                         <Route exact path={ADD_FLAT} component={AddFlatScreen} />
                         <Route exact path={FLAT_LIST} component={FlatListScreen} />
                         <Route path={FLAT_DETAIL} component={FlatDetailScreen}/>
+                        <Route exact path={CONTACT} component={ContactScreen} />
                         <Route exact path={ABOUT} component={AboutScreen} />
                         <Route exact path={LOGOUT} component={LogoutScreen}/>
                     </Switch>

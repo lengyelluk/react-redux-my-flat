@@ -48,10 +48,10 @@ class NavTop extends PureComponent {
 							as={Link} to="/flatList" >Find a room
 						</Menu.Item>
 						<Menu.Item
-							as={Link} to="/willBeAdded" >Contact
+							as={Link} to="/contact" >Contact
 						</Menu.Item>
 						<Menu.Item
-							as={Link} to="/about" >About us
+							as={Link} to="/about" >About me
 						</Menu.Item>
 							{ isAuthenticated ? authLinks : guestLinks }	
 					</Menu>
