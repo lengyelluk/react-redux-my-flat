@@ -146,7 +146,7 @@ class FlatListScreen extends PureComponent {
         return (
             <>
                 <h1>Find a Room</h1>
-                <Form>
+                <Form className='filter-form'>
                     <Form.Group inline>
                         <Form.Field label='City District'
                             control='select'
