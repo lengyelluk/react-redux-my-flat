@@ -1,3 +1,7 @@
-.content {
+.content-contact {
     margin: 0 5%;
+}
+
+.content-contact i {
+    padding-left: 0px;
 }
