@@ -1,6 +1,6 @@
 const {MongoClient} = require('mongodb');
 
-describe('insert', () => {
+describe('test API of adding new listing', () => {
   let connection;
   let db;
 
