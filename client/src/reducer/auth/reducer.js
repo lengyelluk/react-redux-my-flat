@@ -67,7 +67,8 @@ export function selectIsAuthenticated(state) {
 export function getUser(state) {
     if(selectIsAuthenticated(state)) {
        return state.auth.user.username
-    }
+   }
+  
 }
 
 export default persistReducer({

@@ -19,3 +19,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}

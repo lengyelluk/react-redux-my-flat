@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, Sticky, Responsive, Dropdown, DropdownMenu } from 'semantic-ui-react'
+import { Button, Menu, MenuItem, Sticky, Responsive, Dropdown, DropdownMenu, Item, Icon, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
@@ -16,62 +16,88 @@ class NavTop extends PureComponent {
 		this.handleItemClick = this.handleItemClick.bind(this);
 	}
 
-	handleItemClick = (e, { name }) => this.setState({ active: name })
+	handleItemClick = (e) => {
+		console.log(e.target.name);
+		this.setState({ active: e.target.name })
+	}
 
 	render() {
+
+
 		const { isAuthenticated, user } = this.props;
 		const { active } = this.state;
-		const userWelcomeMsg = <Link>Welcome {user}</Link>
+		console.log('ACTIVE: ', active)
+		console.log('condition: ', this.state.active === 'home' )
+		const userWelcomeMsg = <Link to='#'>Welcome {user}</Link>
+
+		
 		return (
 				<Menu pointing secondary>
-				<Responsive name='home'
+				<Responsive 
 					id='home'
-					as={Menu.Item} 
-					minWidth={790}
-					onClick={this.handleItemClick}
-					active={active === 'home'}>
-					<Link to='/'>Home</Link>
+					as={Item} 
+					minWidth={790}>
+					<Link to='/'
+						name='home'
+						onClick={this.handleItemClick}
+						className={this.state.active === 'home' ? 'active' : 'nonactive'}>Home</Link>
                 </Responsive>
 				<Responsive 
-					name='addFlat'
-					id='addFlat' 
-					as={Menu.Item} 
+					id='addFlat'
+					as={Item} 
 					minWidth={790} 
-					onClick={this.handleItemClick}
-					active={active === 'addFlat'}>
-					<Link to='/addFlat'>Rent out a room</Link>
+					//onClick={this.handleItemClick}
+					//active={active === 'addFlat'}>
+					>
+					<Link to='/addFlat'
+						name='addFlat'
+						onClick={this.handleItemClick}
+						className={this.state.active === 'addFlat' ? 'active' : 'nonactive'} 
+						>Rent out a room</Link>
 				</Responsive>
 				<Responsive 
-					as={Menu.Item}
+					as={Item}
+					minWidth={790} 
 					id='flatList'
+					//onClick={this.handleItemClick}
+					//active={active === 'flatList'}>
+					>
+					<Link to='/flatList'
+					onClick={this.handleItemClick}
+					className={this.state.active === 'flatList' ? 'active' : 'nonactive'}
 					name='flatList' 
-					minWidth={790} 
-					onClick={this.handleItemClick}
-					active={active === 'flatList'}>
-					<Link to='/flatList'>Find a room</Link>
+					>Find a room</Link>
 				</Responsive>
 				<Responsive 
-					as={Menu.Item}
+					as={Item}
+					minWidth={790} 
 					id='contact'
-					name='contact' 
-					minWidth={790} 
+					//onClick={this.handleItemClick}
+					//active={active === 'contact'}>
+					>
+					<Link to='/contact'
 					onClick={this.handleItemClick}
-					active={active === 'contact'}>
-					<Link to='/contact'>Contact</Link>
+					className={this.state.active === 'contact' ? 'active' : 'nonactive'}
+					name='contact' 
+					>Contact</Link>
 				</Responsive>
 				<Responsive 
-					as={Menu.Item}
-					name='about'
 					id='about' 
+					as={Item}
 					minWidth={790} 
+					//onClick={this.handleItemClick}
+					//active={active === 'about'}>
+					>
+					<Link 
+					name='about'
 					onClick={this.handleItemClick}
-					active={active === 'about'}>
-					<Link to='/about'>About me</Link>
+					className={this.state.active === 'about' ? 'active' : 'nonactive'}
+					to='/about'>About me</Link>
 				</Responsive>
 				{isAuthenticated ?
 				<Fragment>
 				<Responsive 
-					as={Menu.Item}
+					as={Item}
 					position='right'  
 					name='welcome'
 					id='welcome'
@@ -79,62 +105,52 @@ class NavTop extends PureComponent {
 					{userWelcomeMsg}
 				</Responsive>	
 				<Responsive 
-					as={Menu.Item} 
-					name='logout'
 					id='logout'
+					as={Item} 
 					minWidth={790} 
+					//onClick={this.handleItemClick}
+					//active={active === 'logout'}>
+					>
+					<Link 
+					name='logout'
 					onClick={this.handleItemClick}
-					active={active === 'logout'}>
-					<Link to='/logout'>Logout</Link>
+					className={this.state.active === 'logout' ? 'active' : 'nonactive'}
+					to='/logout'>Logout</Link>
 				</Responsive> 
 				</Fragment>
 				:
 				<Fragment> 
 				<Responsive 
-					position='right'
-					as={Menu.Item} 
-					name='login'
 					id='login'
+					position='right'
+					as={Item} 
 					minWidth={790} 
+					//onClick={this.handleItemClick}
+					//active={active === 'login'}>
+					>
+					<Link 
+					name='login'
 					onClick={this.handleItemClick}
-					active={active === 'login'}>
-					<Link to='/login'>Login</Link>
+					className={this.state.active === 'login' ? 'active' : 'nonactive'}
+					to='/login'>Login</Link>
 				</Responsive>
 				<Responsive
-					
-					as={Menu.Item} 
-					name='register'
 					id='register'
+					as={Item} 
 					minWidth={790} 
+					//onClick={this.handleItemClick}
+					//active={active === 'register'}>
+					>
+					<Link 
+					name='register'
 					onClick={this.handleItemClick}
-					active={active === 'register'}>
-					<Link to='/register'>Register</Link>
+					className={this.state.active === 'register' ? 'active' : 'nonactive'}
+					to='/register'>Register</Link>
 				</Responsive>
 				</Fragment>
-				}
-                    
-                <Responsive as ={Menu.Menu} maxWidth={789}  position='right'>
-                    <Dropdown
-                        item
-						icon ='bars'
-						id='icon'
-                        >
-                        <Dropdown.Menu id='dropdown'>
-							<Dropdown.Item text='Home' as={Link} to='/' />
-							<Dropdown.Item text='Rent out a room' as={Link} to='/addFlat' />
-                            <Dropdown.Item text='Find a room' as={Link} to='/flatList' />
-							<Dropdown.Item text='Contact' as={Link} to='/contact' />
-							<Dropdown.Item text='About me' as={Link} to='/about' />
-							{isAuthenticated ?
-							
-							<Dropdown.Item text='Logout' as={Link} to='/logout' />
-							:
-							<Fragment>
-								<Dropdown.Item text='Login' as={Link} to='/login' />
-								<Dropdown.Item text='Register' as={Link} to='/register' />
-							</Fragment>}
-                        </Dropdown.Menu>
-                    </Dropdown>
+				}	
+				<Responsive id='instructions' as={Header} maxWidth={789}  position='right'>
+                   My Flat App
                 </Responsive>
             </Menu>
 		)

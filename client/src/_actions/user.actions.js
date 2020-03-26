@@ -36,6 +36,7 @@ export const register = ({ username, email, password }) => dispatch => {
             type: userConstants.REGISTER_SUCCESS,
             payload: res.data
         }))
+        
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
             dispatch({

@@ -2,7 +2,6 @@ import React, { PureComponent, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { selectIsAuthenticated } from '../../reducer/auth/reducer'
-
 import './style.css'
 
 

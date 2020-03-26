@@ -10,6 +10,10 @@
     margin: 0;
 }
 
+.ui.secondary.pointing.menu {
+    background-color: white;
+}
+
 .ui.secondary.pointing.menu .active.item {
     font-weight: 500;
 }
@@ -28,13 +32,24 @@
     color: rgba(0,0,0,.87);
 }
 
+#home a.active,
+#addFlat a.active,
+#flatList a.active,
+#contact a.active,
+#about a.active,
+#logout a.active,
+#login a.active,
+#register a.active {
+    border-bottom: 2px solid gray;
+}
+
 #welcome a {
     color:  rgba(0,0,0,.87);
     cursor: auto;
     
 }
 
-#home a:hover,
+#home:hover,
 #addFlat a:hover,
 #flatList a:hover,
 #contact a:hover,
@@ -50,13 +65,10 @@
     width: 200px;
 }
 
-#icon {
-    position: fixed;
+#instructions {
+    margin-top: 8px;
+    width: 100%;
+    text-align: center;
 }
-
-#dropdown a {
-    font-size: 16px !important;
-}
-
 
 
