@@ -44,6 +44,7 @@ export const register = ({ username, email, password }) => dispatch => {
                 type: userConstants.REGISTER_FAIL
             });
         });
+        history.push('/')
 } 
 
 export const login = ({ email, password } ) => dispatch => {
@@ -74,6 +75,7 @@ export const login = ({ email, password } ) => dispatch => {
 };
 
 export const logout = () => {
+    history.push('/')
     return {
         type: userConstants.LOGOUT_SUCCESS
     };

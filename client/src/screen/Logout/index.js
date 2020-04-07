@@ -9,7 +9,7 @@ class LogoutScreen extends PureComponent {
         return (
             <>
             <h1>Confirm by clicking Logout button</h1>
-                <Button onClick={this.props.logout} href="#">
+                <Button color='red' onClick={this.props.logout} href="#">
                     Logout
                 </Button>
             </>

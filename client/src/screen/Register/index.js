@@ -89,7 +89,7 @@ class RegisterScreen extends PureComponent {
                                     />
                             </Form.Field>
                         </Form.Group>
-                        <Button>Register</Button>
+                        <Button color='green'>Register</Button>
                     </Form>
                 </div>
         )

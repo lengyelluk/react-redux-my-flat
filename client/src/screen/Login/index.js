@@ -82,7 +82,7 @@ class LoginScreen extends PureComponent {
                                     />
                             </Form.Field>
                         </Form.Group>
-                        <Button>Login</Button>
+                        <Button color='green'>Login</Button>
                     </Form>
                 </div>
         )
