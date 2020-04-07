@@ -24,8 +24,7 @@ function toggleLogo() {
 }
 export default function MenuLayout(props) {
     return (
-        <div>
-           
+        <div className="menu-content">
                 <img src={logo} alt="logo" className='static-logo' onClick={openNav}/>
                 <div>
                     <Button primary onClick={openNav}>Menu</Button>

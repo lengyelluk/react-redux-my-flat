@@ -1,3 +1,8 @@
+.menu-content {
+    width: 90%;
+    margin: auto;
+}
+
 .static-logo {
     height: 75px;
     cursor: pointer;
