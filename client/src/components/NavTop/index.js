@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, Sticky, Responsive, Dropdown, DropdownMenu, Item, Icon, Header } from 'semantic-ui-react'
+import { Grid, Menu, Responsive, Item, Header } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
@@ -28,15 +28,16 @@ class NavTop extends PureComponent {
 		const { active } = this.state;
 		console.log('ACTIVE: ', active)
 		console.log('condition: ', this.state.active === 'home' )
-		const userWelcomeMsg = <Link to='#'>Welcome {user}</Link>
+		const userWelcomeMsg = <Link to='#'
+								className='welcome-msg'>Welcome {user}</Link>
 
 		
 		return (
-				<Menu pointing secondary>
+			<Menu pointing secondary>
 				<Responsive 
 					id='home'
 					as={Item} 
-					minWidth={790}>
+					minWidth={768}>
 					<Link to='/'
 						name='home'
 						onClick={this.handleItemClick}
@@ -45,9 +46,7 @@ class NavTop extends PureComponent {
 				<Responsive 
 					id='addFlat'
 					as={Item} 
-					minWidth={790} 
-					//onClick={this.handleItemClick}
-					//active={active === 'addFlat'}>
+					minWidth={768} 
 					>
 					<Link to='/addFlat'
 						name='addFlat'
@@ -57,10 +56,8 @@ class NavTop extends PureComponent {
 				</Responsive>
 				<Responsive 
 					as={Item}
-					minWidth={790} 
+					minWidth={768} 
 					id='flatList'
-					//onClick={this.handleItemClick}
-					//active={active === 'flatList'}>
 					>
 					<Link to='/flatList'
 					onClick={this.handleItemClick}
@@ -70,10 +67,8 @@ class NavTop extends PureComponent {
 				</Responsive>
 				<Responsive 
 					as={Item}
-					minWidth={790} 
+					minWidth={768} 
 					id='contact'
-					//onClick={this.handleItemClick}
-					//active={active === 'contact'}>
 					>
 					<Link to='/contact'
 					onClick={this.handleItemClick}
@@ -84,9 +79,7 @@ class NavTop extends PureComponent {
 				<Responsive 
 					id='about' 
 					as={Item}
-					minWidth={790} 
-					//onClick={this.handleItemClick}
-					//active={active === 'about'}>
+					minWidth={768} 
 					>
 					<Link 
 					name='about'
@@ -97,19 +90,18 @@ class NavTop extends PureComponent {
 				{isAuthenticated ?
 				<Fragment>
 				<Responsive 
-					as={Item}
+					as={Menu.Item}
 					position='right'  
 					name='welcome'
 					id='welcome'
-					minWidth={790}>
+					minWidth={768}>
 					{userWelcomeMsg}
 				</Responsive>	
 				<Responsive 
 					id='logout'
+					position='right'
 					as={Item} 
-					minWidth={790} 
-					//onClick={this.handleItemClick}
-					//active={active === 'logout'}>
+					minWidth={768} 
 					>
 					<Link 
 					name='logout'
@@ -123,12 +115,10 @@ class NavTop extends PureComponent {
 				<Responsive 
 					id='login'
 					position='right'
-					as={Item} 
-					minWidth={790} 
-					//onClick={this.handleItemClick}
-					//active={active === 'login'}>
+					as={Menu.Item} 
+					minWidth={768} 
 					>
-					<Link 
+					<Link
 					name='login'
 					onClick={this.handleItemClick}
 					className={this.state.active === 'login' ? 'active' : 'nonactive'}
@@ -137,9 +127,7 @@ class NavTop extends PureComponent {
 				<Responsive
 					id='register'
 					as={Item} 
-					minWidth={790} 
-					//onClick={this.handleItemClick}
-					//active={active === 'register'}>
+					minWidth={768} 
 					>
 					<Link 
 					name='register'
@@ -149,7 +137,7 @@ class NavTop extends PureComponent {
 				</Responsive>
 				</Fragment>
 				}	
-				<Responsive id='instructions' as={Header} maxWidth={789}  position='right'>
+				<Responsive id='instructions' as={Header} maxWidth={767}  position='right'>
                    My Flat App
                 </Responsive>
             </Menu>
