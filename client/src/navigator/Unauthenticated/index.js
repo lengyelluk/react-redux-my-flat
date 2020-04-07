@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router as Router, Route, Switch } from 'react-router-dom'
 import { AboutScreen, AddFlatScreen, FlatDetailScreen, FlatListScreen, HomeScreen, RegisterScreen, LogoutScreen, LoginScreen, ContactScreen } from '../../screen'
 import { MenuLayout, TopNavBarLayout } from '../../layout'
 
@@ -13,11 +13,12 @@ import { FLAT_LIST } from '../../screen/FlatList'
 import { REGISTER } from '../../screen/Register'
 import { CONTACT } from '../../screen/Contact'
 import { PrivateRoute } from '../../components'
+import history  from '../../history'
 
 class UnauthenticatedRouter extends PureComponent {
     render() {
         return (
-                <Router>
+                <Router history={history}>
                     <TopNavBarLayout>
                         <Switch>
                             <Route exact path={HOME} component={HomeScreen} />

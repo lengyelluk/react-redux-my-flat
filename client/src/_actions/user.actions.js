@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { userConstants } from '../_constants';
 import { returnErrors } from '../_actions/error.actions';
+import history from './../history'
 
 export const loadUser = () => (dispatch, getState) => {
     //user loading
@@ -45,7 +46,7 @@ export const register = ({ username, email, password }) => dispatch => {
         });
 } 
 
-export const login = ({ email, password }) => dispatch => {
+export const login = ({ email, password } ) => dispatch => {
     //header
     const config = {
         headers: {
@@ -57,10 +58,13 @@ export const login = ({ email, password }) => dispatch => {
     const body = JSON.stringify({ email, password });
     
     axios.post('/users/login', body, config)
-        .then(res => dispatch({
+        .then(res => {dispatch({
             type: userConstants.LOGIN_SUCCESS,
             payload: res.data
-        }))
+        })
+            history.push('/')
+    })
+            
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL'));
             dispatch({
