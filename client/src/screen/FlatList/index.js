@@ -1,4 +1,4 @@
-import { Form, Input, Button } from 'semantic-ui-react'
+import { Form, Input, Button, Header, Container } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
 import { CardList, PriceInput } from '../../components'
 import { cardService } from '../../_services/card.service';
@@ -14,10 +14,10 @@ class FlatListScreen extends PureComponent {
             cards: [],
             filteredCards: [],
             filter: {
-                district: null,
-                gender: null,
-                maxFlatmates: null,
-                maxPrice: null,
+                district: '',
+                gender: '',
+                maxFlatmates: '',
+                maxPrice: '',
                 petAllowed: false,
                 smokingAllowed: false
             }
@@ -128,29 +128,39 @@ class FlatListScreen extends PureComponent {
         }, this.updateCards)
     }
 
-    resetFilters() {
-        this.setState({
+    resetFilters = () => {
+        this.setState({ 
+            filteredCards: this.state.cards,
             filter: {
-                district: null,
-                gender: null,
-                maxFlatmates: null,
-                maxPrice: null,
+                district: '',
+                gender: '',
+                maxFlatmates: '',
+                maxPrice: '',
                 petAllowed: false,
                 smokingAllowed: false
             }
-        })
+        });
     }
+        
 
 
     render() {
         return (
             <>
-                <h1>Find a Room</h1>
-                <Form className='filter-form'>
+                <Container id='flat-list-header'>
+                    <Header as='h1'>Find a Room that you like!</Header>
+                    <p>Do you want to know more details about the room and the flat?</p>
+                    <p>Just click on the photo and more details will be displayed. Don't forget that you need to register/login
+                        in order to see the details
+                    </p>
+                    <p>Special hint: Use the filter to to narrow the search result</p>
+                </Container>
+                <Form onSubmit={this.resetFilters}>
                     <Form.Group inline>
                         <Form.Field label='City District'
                             control='select'
                             onChange={this.updateDistrict}
+                            value={this.state.filter.district}
                         >
                             <option value=''></option>
                             <option value='Stare Mesto'>Staré Mesto</option>
@@ -167,11 +177,13 @@ class FlatListScreen extends PureComponent {
                         </Form.Field>
                         <Form.Field inline>
                             <label>Max num of flatmates</label>
-                            <Input onChange={this.updateMaxFlatmates} placeholder='3' value={this.state.filter.maxFlatmates}/>
+                            <Input onChange={this.updateMaxFlatmates} placeholder='3'
+                                    value={this.state.filter.maxFlatmates}/>
                         </Form.Field>
                         <Form.Field label='Your gender'
                             control='select'
                             onChange={this.updateGender}
+                            value={this.state.filter.gender}
                         >
                             <option value=''></option>
                             <option value='male'>Male</option>
@@ -180,7 +192,8 @@ class FlatListScreen extends PureComponent {
                         </Form.Field>
                         <Form.Field inline>
                             <label>Max price</label>
-                            <Input onChange={this.updateMaxPrice} placeholder='350 EUR' value={this.state.filter.maxPrice}/>
+                            <Input onChange={this.updateMaxPrice} placeholder='350 EUR'
+                                    value={this.state.filter.maxPrice}/>
                         </Form.Field>
                         <Form.Field
                             label='Pet Allowed'
@@ -188,6 +201,7 @@ class FlatListScreen extends PureComponent {
                             type='checkbox'
                             checked={this.state.filter.petAllowed}
                             onChange={this.updatePetAllowed}
+                            value={this.state.filter.petAllowed}
                         />
                         <Form.Field
                             label='Smoking Allowed'
@@ -195,11 +209,10 @@ class FlatListScreen extends PureComponent {
                             type='checkbox'
                             checked={this.state.filter.smokingAllowed}
                             onChange={this.updateSmokingAllowed}
+                            value={this.state.filter.smokingAllowed}
                         />
-                        <Button
-                            onClick={this.resetFilters}
-                        >Reset filters
-								 </Button>
+                        <Form.Button
+                            content='Reset filters' />
                     </Form.Group>
                 </Form>
                 <CardList cards={this.state.filteredCards} />
