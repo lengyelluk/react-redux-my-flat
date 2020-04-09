@@ -1,4 +1,4 @@
-import { Form, Input, Button, Header, Container } from 'semantic-ui-react'
+import { Form, Input, Button, Header, Container, Grid } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
 import { CardList, PriceInput } from '../../components'
 import { cardService } from '../../_services/card.service';
@@ -155,66 +155,75 @@ class FlatListScreen extends PureComponent {
                     </p>
                     <p>Special hint: Use the filter to to narrow the search result</p>
                 </Container>
-                <Form onSubmit={this.resetFilters}>
-                    <Form.Group inline>
-                        <Form.Field label='City District'
-                            control='select'
-                            onChange={this.updateDistrict}
-                            value={this.state.filter.district}
-                        >
-                            <option value=''></option>
-                            <option value='Stare Mesto'>Staré Mesto</option>
-                            <option value='Ruzinov'>Ružinov</option>
-                            <option value='Vrakuna'>Vrakuňa</option>
-                            <option value='Podunajske Biskupice'>Podunajské Biskupice</option>
-                            <option value='Nove Mesto'>Nové Mesto</option>
-                            <option value='Raca'>Rača</option>
-                            <option value='Vajnory'>Vajnory</option>
-                            <option value='Karlova Ves'>Karlova Ves</option>
-                            <option value='Dubravka'>Dúbravka</option>
-                            <option value='Lamac'>Lamač</option>
-                            <option value='Devinska Nova Ves'>Devínska Nová Ves</option>
-                        </Form.Field>
-                        <Form.Field inline>
-                            <label>Max num of flatmates</label>
-                            <Input onChange={this.updateMaxFlatmates} placeholder='3'
-                                    value={this.state.filter.maxFlatmates}/>
-                        </Form.Field>
-                        <Form.Field label='Your gender'
-                            control='select'
-                            onChange={this.updateGender}
-                            value={this.state.filter.gender}
-                        >
-                            <option value=''></option>
-                            <option value='male'>Male</option>
-                            <option value='female'>Female</option>
-                            <option value='couple'>Couple</option>
-                        </Form.Field>
-                        <Form.Field inline>
-                            <label>Max price</label>
-                            <Input onChange={this.updateMaxPrice} placeholder='350 EUR'
-                                    value={this.state.filter.maxPrice}/>
-                        </Form.Field>
-                        <Form.Field
-                            label='Pet Allowed'
-                            control='input'
-                            type='checkbox'
-                            checked={this.state.filter.petAllowed}
-                            onChange={this.updatePetAllowed}
-                            value={this.state.filter.petAllowed}
-                        />
-                        <Form.Field
-                            label='Smoking Allowed'
-                            control='input'
-                            type='checkbox'
-                            checked={this.state.filter.smokingAllowed}
-                            onChange={this.updateSmokingAllowed}
-                            value={this.state.filter.smokingAllowed}
-                        />
-                        <Form.Button
-                            content='Reset filters' />
-                    </Form.Group>
-                </Form>
+                    <Form onSubmit={this.resetFilters}>
+                        <Form.Group inline>
+                            <Form.Field label='City District'
+                                control='select'
+                                onChange={this.updateDistrict}
+                                value={this.state.filter.district}
+                            >
+                                <option value=''></option>
+                                <option value='Stare Mesto'>Staré Mesto</option>
+                                <option value='Ruzinov'>Ružinov</option>
+                                <option value='Vrakuna'>Vrakuňa</option>
+                                <option value='Podunajske Biskupice'>Podunajské Biskupice</option>
+                                <option value='Nove Mesto'>Nové Mesto</option>
+                                <option value='Raca'>Rača</option>
+                                <option value='Vajnory'>Vajnory</option>
+                                <option value='Karlova Ves'>Karlova Ves</option>
+                                <option value='Dubravka'>Dúbravka</option>
+                                <option value='Lamac'>Lamač</option>
+                                <option value='Devinska Nova Ves'>Devínska Nová Ves</option>
+                            </Form.Field>
+                            <Form.Field
+                                >
+                                <label>Flatmates</label>
+                                <Input onChange={this.updateMaxFlatmates} placeholder='3'
+                                        value={this.state.filter.maxFlatmates}
+                                        id='form-flatmates'
+                                        />
+                            </Form.Field>
+                            <Form.Field 
+                                id='form-gender'
+                                label='Your gender'
+                                control='select'
+                                onChange={this.updateGender}
+                                value={this.state.filter.gender}
+                                >
+                                <option value=''></option>
+                                <option value='male'>Male</option>
+                                <option value='female'>Female</option>
+                                <option value='couple'>Couple</option>
+                            </Form.Field>
+                        </Form.Group>
+                        <Form.Group inline>
+                            <Form.Field>
+                                <label>Price up to</label>
+                                <Input onChange={this.updateMaxPrice} placeholder='350 EUR'
+                                        value={this.state.filter.maxPrice}
+                                        id='form-max-price'/>
+                            </Form.Field>
+                            <Form.Field
+                                label='Pet Allowed'
+                                control='input'
+                                type='checkbox'
+                                checked={this.state.filter.petAllowed}
+                                onChange={this.updatePetAllowed}
+                                value={this.state.filter.petAllowed}
+                            />
+                            <Form.Field
+                                label='Smoking Allowed'
+                                control='input'
+                                type='checkbox'
+                                checked={this.state.filter.smokingAllowed}
+                                onChange={this.updateSmokingAllowed}
+                                value={this.state.filter.smokingAllowed}
+                            />
+                            <Form.Button
+                                content='Reset filters'
+                                color='red'/>
+                        </Form.Group>
+                    </Form>
                 <CardList cards={this.state.filteredCards} />
             </>
         )

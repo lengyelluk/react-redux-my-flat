@@ -1,3 +1,14 @@
 #flat-list-header {
     padding: 25px 0 35px;
 }
+
+@media screen and (max-width: 765px) {
+    #form-gender,
+    #form-flatmates {
+        margin-top: 0.5em;
+    }
+    #form-max-price {
+        margin-bottom: 0.5em;
+        margin-right: 20em;
+    }
+}
