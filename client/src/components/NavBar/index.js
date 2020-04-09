@@ -25,7 +25,7 @@ class NavBar extends PureComponent {
 
 		return (
 			<div id="navBar" className="overlay">
-			<a className="closeBtn" onClick={closeNav}>&times;</a>
+			<a id='menu-closeBtn' className="closeBtn" onClick={closeNav}>&times;</a>
 			<div className="overlay-content">
 				<Link to="/" onClick={closeNav}>Home</Link>
 				{ isAuthenticated ? authLinks : guestLinks }

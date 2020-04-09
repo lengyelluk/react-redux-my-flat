@@ -2,7 +2,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 0;
   top: 0;
   background-color: black;
@@ -15,11 +15,11 @@
   top: 25%;
   width: 100%;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 3%;
 }
 
 .overlay a {
-  padding: 8px;
+  margin: 25px;
   text-decoration: none;
   font-size: 36px;
   color: #818181;
@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 
-.overlay .closebtn {
+#menu-closeBtn {
   position: absolute;
   top: 20px;
   right: 45px;
@@ -44,7 +44,7 @@
   .overlay a {
     font-size: 20px;
   }
-  .overlay .closebtn {
+  #menu-closeBtn {
     font-size: 40px;
     top: 15px;
     right: 35px;

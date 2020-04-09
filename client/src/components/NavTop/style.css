@@ -60,17 +60,6 @@
     background-color: lightgray;
 }
 
-#dropdown {
-    left: 0;
-    width: 200px;
-}
-
-#instructions {
-    margin-top: 8px;
-    width: 100%;
-    text-align: center;
-}
-
 
 .welcome-msg {
     font-weight: 600;
