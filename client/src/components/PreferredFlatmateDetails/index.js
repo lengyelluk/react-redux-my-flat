@@ -1,8 +1,18 @@
-import { Form, Button, Checkbox } from 'semantic-ui-react'
+import { Form, Button, Checkbox, Container, Header, Segment } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
+import './style.css'
 
 class PreferredFlatmateDetails extends PureComponent {
 	
+	state = {
+		prefFlatmatesMale: false
+	}
+
+	handleChange = () => {
+		this.setState({ prefFlatmatesMale: !this.state.prefFlatmatesMale })
+		console.log('test');
+	}
+
 	saveAndContinue = e => {
 		e.preventDefault()
 		this.props.nextStep()
@@ -14,53 +24,54 @@ class PreferredFlatmateDetails extends PureComponent {
 	}
 
 	render() {
-		const { values } = this.props
+		const { values } = this.props;
 		return (
 			<Form>
-				<h1 className='ui centered'>Preffered Flatmate Details</h1>
-				<Form.Group inline>
-					<label>Who are you OK to live with?</label>
-					<Form.Field  
-						label='Male'
-						control='input'
-						type='checkbox'
-						onChange={this.props.handleChange('prefFlatmatesMale')}
+				<Container id='pref-flatmate-details-container'>
+					<Header as='h1' className='ui centered'>Who would you like to with it?</Header>
+					<p>Maybe you do not want to share a flat with a couple or with a smoker.
+						Be honest and choose the options based on your real preferences.
+					</p>
+				</Container>
+				<p>Toggle the buttons if you do agree with the statements next to the button</p>
+				<Segment compact>
+					<Checkbox
+						toggle
+						label='I am OK to share the flat with men'
+						onChange={this.props.handleChangeMale}
 						checked={values.prefFlatmatesMale}
 					 />
-					 <Form.Field  
-						label='Female'
-						control='input'
-						type='checkbox'
-						onChange={this.props.handleChange('prefFlatmatesFemale')}
+				</Segment>
+				<Segment compact>
+					 <Checkbox toggle
+						label='I am OK to share the flat with women'
+						onChange={this.props.handleChangeFemale}
 						checked={values.prefFlatmatesFemale}
 					 />
-					 <Form.Field  
-						label='Couple'
-						control='input'
-						type='checkbox'
-						onChange={this.props.handleChange('prefFlatmatesCouple')}
+				</Segment>
+				<Segment compact>
+					 <Checkbox toggle  
+						label='Couples are also fine'
+						onChange={this.props.handleChangeCouple}
 						checked={values.prefFlatmatesCouple}
 					 />
-				</Form.Group>
-				<Form.Group inline>
-					<label>What about pets and smokers?</label>
-					 <Form.Field  
-						label='Pet Allowed'
-						control='input'
-						type='checkbox'
-						onChange={this.props.handleChange('petAllowed')}
+			</Segment>
+			<Segment compact>		
+					 <Checkbox toggle  
+						label='Pets are welcome'
+						onChange={this.props.handleChangePet}
 						checked={values.petAllowed}
 					 />
-					 <Form.Field  
-						label='Smoking Allowed'
-						control='input'
-						type='checkbox'
-						onChange={this.props.handleChange('smokingAllowed')}
+			</Segment>
+			<Segment compact>
+					 <Checkbox toggle  
+						label='Smoking is allowed'
+						onChange={this.props.handleChangeSmoking}
 						checked={values.smokingAllowed}
 					 />
-				</Form.Group>
-				<Button onClick={this.back}>Back</Button>
-				<Button onClick={this.saveAndContinue}>Save and Continue</Button>
+			</Segment>
+				<Button color='red' onClick={this.back}>Back</Button>
+				<Button color='green' onClick={this.saveAndContinue}>Save and Continue</Button>
 			</Form>
 		)
 	}

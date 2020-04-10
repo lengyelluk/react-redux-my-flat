@@ -1,0 +1,9 @@
+@media only screen and (max-width: 768px) {
+    #flatmate-button {
+        margin-top: 1em;
+    }   
+}
+
+#flatmate-details-container {
+	margin: 2em 0;
+}

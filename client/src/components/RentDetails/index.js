@@ -1,6 +1,7 @@
 import { DateInput } from 'semantic-ui-calendar-react'
-import { Icon, Form, Button } from 'semantic-ui-react'
+import { Icon, Form, Button, Container, Header } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
+import './style.css'
 
 class RentDetails extends PureComponent {
 	saveAndContinue = e => {
@@ -17,11 +18,14 @@ class RentDetails extends PureComponent {
 		const { values } = this.props
 		return (
 			<Form>
-				<h1 className='ui centered'>Enter Rent Details</h1>
+				<Container id='rent-details-container'>
+					<Header as='h1'>How much is the rent and what is the availability?</Header>
+					<p>What is the rent for the room? Is there a minimum rental period? And when can your new flatmate move in?</p>
+				</Container>
 				<Form.Field>
-						<label>Price</label>
+						<label>Price in EUR</label>
 						<Form.Input
-							type='number'
+							type='number' min={1}
 							placeholder='300 EUR'
 							onChange={this.props.handleChange('price')}
 							defaultValue={values.price}
@@ -30,7 +34,7 @@ class RentDetails extends PureComponent {
 				<Form.Field>
 						<label>Minimal duration of rent in months</label>
 						<Form.Input
-							type='number'
+							type='number' min={1}
 							placeholder='5 months'
 							onChange={this.props.handleChange('minStay')}
 							defaultValue={values.minStay}
@@ -46,8 +50,8 @@ class RentDetails extends PureComponent {
 						onChange={this.props.handleDate('availabilityDate')}
 						/>
 				</Form.Field>
-				<Button onClick={this.back}>Back</Button>
-				<Button onClick={this.saveAndContinue}>Save and Continue</Button>
+				<Button color='red' onClick={this.back}>Back</Button>
+				<Button color='green' onClick={this.saveAndContinue}>Save and Continue</Button>
 			</Form>
 		)
 	}

@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react'
-import { Form, Button, List } from 'semantic-ui-react'
+import { Form, Button, List, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { addCard } from '../../_actions/card.actions'
+import './style.css'
+import { cardService } from '../../_services/card.service';
 
 class Confirmation extends PureComponent {
 
@@ -11,7 +13,7 @@ class Confirmation extends PureComponent {
 		const { values } = this.props;
 		const priceObject = {price: {value: values.price, currency: 'EUR'}};
 		const finalObject = {...values, ...priceObject};
-		//const data = await cardService.saveCard(finalObject);
+		const data = await cardService.saveCard(finalObject);
 
 		const newCard = {
 			...finalObject
@@ -34,51 +36,59 @@ class Confirmation extends PureComponent {
 			prefFlatmatesCouple, petAllowed, smokingAllowed }} = this.props
 			console.log('props: ', this.props);
 			return(
-				<div>
-					<h1>Check all the details</h1>
-					<p>Confirm if all details below are correct</p>
-					<List>
+				<>
+				<Container id='confirmation-container'>
+					<Header as='h1'>Is everything correct?</Header>
+					<p>Please check all the details. If there is any mistake, use the back button, correct the mistake
+						and move forward again.</p> 
+					<p>If everything is correct, click <strong>Confirm</strong>. Your listing
+						will be visible immediately.
+					</p>
+				</Container>
+				
+					<List size={'big'}>
 						<List.Item>
-							<List.Content>District: {district}</List.Content>
+							<List.Content>City District: {district}</List.Content>
 						</List.Item>
 						<List.Item>
 							<List.Content>Street: {street}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Male Flatmates: {flatmatesMale}</List.Content>
+							<List.Content>Men living in the flat: {flatmatesMale}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Female Flatmates: {flatmatesFemale}</List.Content>
+							<List.Content>Women living in the flat: {flatmatesFemale}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Preferred Male Flatmates: {prefFlatmatesMale ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Are you OK to share the flat with men: {prefFlatmatesMale ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Preferred Female Flatmates: {prefFlatmatesFemale ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Are you OK to share the flat with men: {prefFlatmatesFemale ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Preferred Couple Flatmates: {prefFlatmatesCouple ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Are you OK to share the flat with a couple: {prefFlatmatesCouple ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Pet Allowed: {petAllowed ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Are pets allowed: {petAllowed ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Smoking Allowed: {smokingAllowed ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Is smoking allowed: {smokingAllowed ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Price: {price}</List.Content>
+							<List.Content>Price of the rent: {price} EUR/month</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Minimal stay: {minStay}</List.Content>
+							<List.Content>Minimum rental period: {minStay} months</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>AvailabilityDate: {availabilityDate}</List.Content>
+							<List.Content>Availabile from: {availabilityDate}</List.Content>
 						</List.Item>
 					</List>
 
-					<Button onClick={this.back}>Back</Button>
-					<Button onClick={this.saveAndContinue}>Confirm</Button>
-				</div>
+					<Button color='red' onClick={this.back}>Back</Button>
+					<Button color='green' onClick={this.saveAndContinue}>Confirm</Button>
+					
+				</>
 			)
     }
 }

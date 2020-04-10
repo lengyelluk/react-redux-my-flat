@@ -1,3 +1,14 @@
 Button[disabled] {
 	cursor: not-allowed;
 }
+
+#flat-details-container {
+	margin: 2em 0;
+}
+
+@media only screen and (max-width: 768px) { 
+	#flat-details-button {
+		margin-top: 1em;
+	}
+}
+

@@ -50,12 +50,32 @@ class AddFlatScreen extends PureComponent {
 
 	handleChange = input => event => {
 		this.setState({ [input]: event.target.value });
-	}
+    }
+    
+    handleChangeMale = () => {
+		this.setState({ prefFlatmatesMale: !this.state.prefFlatmatesMale })
+    }
+
+    handleChangeFemale = () => {
+		this.setState({ prefFlatmatesFemale: !this.state.prefFlatmatesFemale })
+    }
+
+    handleChangeCouple = () => {
+		this.setState({ prefFlatmatesCouple: !this.state.prefFlatmatesCouple })
+    }
+
+    handleChangeSmoking = () => {
+		this.setState({ smokingAllowed: !this.state.smokingAllowed })
+    }
+
+    handleChangePet = () => {
+		this.setState({ petAllowed: !this.state.petAllowed })
+    }
 
 	handleChecked = input => event => {
-		this.setState({ [input]: event.target.checked });
-	}
-
+        console.log('handle checked executed')
+    }
+	
 	handleDate = input => (event, {name, value}) => {
 		if(this.state.hasOwnProperty(name)) {
 			this.setState({ [name]: value });
@@ -104,7 +124,11 @@ class AddFlatScreen extends PureComponent {
                             <PreferredFlatmateDetails
                                 nextStep={this.nextStep}
                                 prevStep={this.prevStep}
-                                handleChange={this.handleChecked}
+                                handleChangeMale={this.handleChangeMale}
+                                handleChangeFemale={this.handleChangeFemale}
+                                handleChangeCouple={this.handleChangeCouple}
+                                handleChangeSmoking={this.handleChangeSmoking}
+                                handleChangePet={this.handleChangePet}
                                 values={values}
                             />
                         </div>

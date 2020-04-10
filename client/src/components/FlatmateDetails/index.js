@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container, Header } from 'semantic-ui-react'
 import './style.css'
 
 class FlatmateDetails extends PureComponent {
@@ -18,7 +18,10 @@ class FlatmateDetails extends PureComponent {
 		const { values } = this.props
 		return (
 			<Form>
-				<h1 className='ui centered'>Enter Flatmate Details</h1>
+				<Container id='flatmate-details-container'>
+					<Header as='h1' className='ui centered'>Who lives in the flat?</Header>
+					<p>Pick up a number of people living in the flat. This might be important for people looking for a room, so count well!</p>
+				</Container>
 				<Form.Group>
 					<Form.Field label='Number of men living in the flat' 
 						control='select'
@@ -49,8 +52,8 @@ class FlatmateDetails extends PureComponent {
 						<option value='7'>7</option>
 					</Form.Field>
 				</Form.Group>
-				<Button onClick={this.back}>Back</Button>
-				<Button onClick={this.saveAndContinue}>Save and Continue</Button>
+				<Button color='red' onClick={this.back}>Back</Button>
+				<Button id='flatmate-button' color='green' onClick={this.saveAndContinue}>Save and Continue</Button>
 			</Form>
 		)
 	}

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container, Header } from 'semantic-ui-react'
 import './style.css'
 
 class FlatDetails extends PureComponent {
@@ -19,7 +19,11 @@ class FlatDetails extends PureComponent {
 		console.log(values.streetError)
 		return (
 			<Form>
-				<h1>Enter Flat Details</h1>
+				<Container id='flat-details-container'>
+				<Header as='h1'>Where is the flat?</Header>
+				<p>Choose the city district and write down the street</p>
+				<p>Title of your listing should in a few words describe the flat/room and attract your potential flatmates</p>
+				</Container>
 				<Form.Group>	
 					<Form.Field label='City District' 
 						control='select'
@@ -55,7 +59,7 @@ class FlatDetails extends PureComponent {
 							/>
 					</Form.Field>
 				</Form.Group>
-				<Button onClick={this.saveAndContinue}>Save and Continue</Button>
+				<Button color='green' onClick={this.saveAndContinue} id='flat-details-button'>Save and Continue</Button>
 			</Form>
 		)
 	}
