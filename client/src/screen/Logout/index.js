@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom'
 import React, { PureComponent } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Container, Header, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { logout } from '../../_actions/user.actions';
+import './style.css'
 
 class LogoutScreen extends PureComponent {
     render() {
         return (
-            <>
-            <h1>Confirm by clicking Logout button</h1>
+            <Container id='logout-content'>
+                <Header as='h1'>You will be logged out after clicking the <strong>Logout</strong> button</Header>
                 <Button color='red' onClick={this.props.logout} href="#">
                     Logout
                 </Button>
-            </>
+            </Container>
         )
     }
 }

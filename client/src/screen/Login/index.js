@@ -1,6 +1,6 @@
 import { Link, withRouter } from 'react-router-dom'
 import React, { PureComponent } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container, Header, Message } from 'semantic-ui-react'
 import { Register } from '../../components'
 import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
@@ -29,7 +29,9 @@ class LoginScreen extends PureComponent {
             if(error.id === 'LOGIN_FAIL') {
                 console.log('is not null:', error.msg.msg)
                 this.setState({
-                    msg: error.msg.msg
+                    msg: error.msg.msg,
+                    email: '',
+                    password: ''
                 });
             } else {
                 this.setState({
@@ -57,12 +59,23 @@ class LoginScreen extends PureComponent {
 
     render() {
         return (
-                <div className='content-login'>
+                <div>
+                    <Container id='login-containter'>
+                    <Header as='h1'>You should login to access all pages</Header>
+                        <p>You do not need to login if you only want to check the listings. However, if you want to
+                             either <strong>see specific details of the room</strong> (including the contact info) or if you want to 
+                              <strong> rent out a room</strong>, you need to login.</p>
+                        <p>If you have not registered yet, please head to the <Link to='/register'><strong>Register</strong></Link> page. If
+                        you have already registered, use your email and password set during the registration.
+                        </p>                        
+                        <div>{this.state.msg ? <Message warning>
+                                                    <Message.Header>{this.state.msg}</Message.Header>
+                                                </Message> : 
+                                                    null}
+                                                    </div>
+                    </Container>
                     <Form onSubmit={this.onSubmit}>
-                        <h1>Login</h1>
-                        <h3>You must log in to view the page</h3>
-                        <p>{this.state.msg ? <span>{this.state.msg}</span> : null}</p>
-                        <Form.Group>	
+                        <Form.Group id='login-form'>	
                             <Form.Field
                             name='email'>
                                 <label>Email</label>
@@ -70,6 +83,7 @@ class LoginScreen extends PureComponent {
                                     placeholder='john.smith@email.com'
                                     name='email'
                                     onChange={this.onChange}
+                                    value={this.state.email}
                                     />
                             </Form.Field>
                             <Form.Field>
@@ -79,6 +93,7 @@ class LoginScreen extends PureComponent {
                                     name='password'
                                     placeholder='Super secret password'
                                     onChange={this.onChange}
+                                    value={this.state.password}
                                     />
                             </Form.Field>
                         </Form.Group>
