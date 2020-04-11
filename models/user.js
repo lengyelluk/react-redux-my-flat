@@ -8,15 +8,13 @@ const UserSchema = new Schema({
     type: String,
     unique: false,
     trim: true,
-    index: {unique: true},
     minlength: 3,
   },
   email: {
     type: String,
-    unique: true,
+    unique: false,
     trim: true,
     lowercase: true,
-    index: {unique: true},
     validate: {
       validator: emailValidator.validate,
       message: props => `${props.value} is not a valid email address`,
@@ -24,9 +22,8 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    unique: true,
+    unique: false,
     trim: true,
-    index: {unique: true},
     minlength: 8,
   }
 }, {

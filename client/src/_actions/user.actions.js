@@ -33,18 +33,19 @@ export const register = ({ username, email, password }) => dispatch => {
     const body = JSON.stringify({ username, email, password });
     
     axios.post('/users/registration', body, config)
-        .then(res => dispatch({
+        .then(res => {dispatch({
             type: userConstants.REGISTER_SUCCESS,
             payload: res.data
-        }))
-        
+        })
+        history.push('/')
+    })
+
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
             dispatch({
                 type: userConstants.REGISTER_FAIL
             });
         });
-        history.push('/')
 } 
 
 export const login = ({ email, password } ) => dispatch => {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, { PureComponent } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Container, Header, Message } from 'semantic-ui-react'
 import { Register } from '../../components'
 import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
@@ -56,11 +56,22 @@ class RegisterScreen extends PureComponent {
 
     render() {
         return (
-                <div className='content-register'>
+                <div>
+                    <Container id='register-content'>
+                        <Header as='h1'>Register to gain access to all sections</Header>
+                        <p>To register you need to have an email address. The registration is for free and after registration 
+                            you will gain access to all the details of each listing. If you want to rent out a room, this option will
+                             be enabled right after successful registration.
+                        </p>
+                        <p>Put down to the form three basic information: your first name, your email and password. Password should be at least
+                             8 characters long.
+                        </p>
+                        <div>{this.state.msg ? <Message warning>
+                                                    <Message.Header>{this.state.msg}</Message.Header>
+                                                </Message> : null}</div>
+                    </Container>
                     <Form onSubmit={this.onSubmit}>
-                        <h1>Registration</h1>
-                        <h2>{this.state.msg ? <span>{this.state.msg}</span> : null}</h2>
-                        <Form.Group>
+                        <Form.Group id='registration-form'>
                             <Form.Field
                             name='username'>
                                 <label>Name</label>

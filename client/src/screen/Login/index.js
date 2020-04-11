@@ -61,7 +61,7 @@ class LoginScreen extends PureComponent {
         return (
                 <div>
                     <Container id='login-containter'>
-                    <Header as='h1'>You should login to access all pages</Header>
+                    <Header as='h1'>Login to access all sections</Header>
                         <p>You do not need to login if you only want to check the listings. However, if you want to
                              either <strong>see specific details of the room</strong> (including the contact info) or if you want to 
                               <strong> rent out a room</strong>, you need to login.</p>
