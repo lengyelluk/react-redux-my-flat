@@ -1,7 +1,15 @@
 .content-contact {
-    margin: 0 5%;
+    margin: 1.5em 5%;
 }
 
 .content-contact i {
     padding-left: 0px;
+}
+
+#desc-contact {
+    margin-bottom: 3em;
+}
+
+.content-contact a {
+    color:rgba(0, 0, 0, 0.87);
 }

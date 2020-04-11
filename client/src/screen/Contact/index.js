@@ -1,13 +1,23 @@
 import React, { PureComponent } from 'react'
 import './style.css'
-import { Image, List, Button} from 'semantic-ui-react'
+import { Container, Header, Image, List, Button} from 'semantic-ui-react'
 
 class ContactScreen extends PureComponent {
     render() {
         return (
+            <Container>
             <div className='content-contact'>
-                <h1>Contact</h1>
-                <List relaxed size={"large"}>
+                <Header as='h1'>Contact</Header>
+                <p>If you find this website interesting or you simply want to contact me about any topic related to testing,
+                     please fell free to do so using email or phone. I would appreciate any feedback and I am always
+                     up for a good chat. In the last years of my career, many people helped me to learn more, so I would
+                     love to give a litle bit back to the community.
+                </p>
+                <p id='desc-contact'>
+                    If you would like to find out more information, just click on LinkedIn or GitHub profiles.<br></br> Note: I need to do "a bit" of cleaning
+                     in my GitHub repositories :)
+                </p>
+                <List divided relaxed size={"large"}>
                     <List.Item>
                         <List.Icon name='spy' />
                         <List.Content>Lukas Lengyel</List.Content>
@@ -29,14 +39,22 @@ class ContactScreen extends PureComponent {
                         </List.Content>
                     </List.Item>
                     <List.Item>
+                        <List.Icon name='linkedin' />
+                        <List.Content>
+                            <a href='https://www.linkedin.com/in/lukas-lengyel/'
+                            target='_blank'>LinkedIn Profile</a>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item>
                         <List.Icon name='linkify' />
                         <List.Content>
                             <a href='https://github.com/lengyelluk'
-                            target='_blank'>lengyelluk@github</a>
+                            target='_blank'>GitHub Profile</a>
                         </List.Content>
                     </List.Item>
                 </List>
             </div>
+            </Container>
         )
     }
 }
