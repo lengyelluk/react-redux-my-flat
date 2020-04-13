@@ -7,7 +7,7 @@ export default function UserInfo(props) {
 	return (
 		<Container>
 			<Header as='h3'>Contact person</Header>
-			<p dividing id='contact-header'><Icon fitted name='mail outline' size='big' />Drop an email to {props.username} at <strong>{props.email}</strong></p>		
+			<p id='contact-header'><Icon fitted name='mail outline' size='big' />Drop an email to {props.username} at <strong>{props.email}</strong></p>		
 		</Container>
 	)
 }

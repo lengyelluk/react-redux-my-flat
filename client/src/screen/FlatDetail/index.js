@@ -36,12 +36,12 @@ class FlatDetailScreen extends PureComponent {
 
     async componentDidMount() {
         await this.props.getCard(this.state.currentCardId);
-        const commentsData = await commentService.getAllCommentsByCardId(this.state.currentCardId);
+        //const commentsData = await commentService.getAllCommentsByCardId(this.state.currentCardId);
         this.setState({
             card: this.props.card.card,
-            comments: commentsData,
+            //comments: commentsData,
         })
-        console.log(this.state.card)
+        
     }
 
     async upvoteCard() {
