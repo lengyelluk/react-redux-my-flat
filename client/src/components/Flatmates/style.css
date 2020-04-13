@@ -1,9 +1,19 @@
 .icon {
-	padding: 0 2% 0 10%;
+	padding: 0 2% 0 0;
 }
 
-.heading {
+#flatmates-header {
+	margin: 1em 0;	
+}
+
+#flatmates-text{
+	padding-bottom: .21428571rem;
+	border-bottom: 1px solid rgba(34,36,38,.15);
 	text-align: left;
-	padding-left: 10%;
-	font-size: 30px;
+	font-weight: normal;
+	margin: 1em 0;
+}
+
+#flatmates-text .female {
+	padding-left: 4%;
 }

@@ -27,4 +27,4 @@ function renderCard(card, key) {
 			</Container>
 		</Grid.Column>
 	)
-}
+}	

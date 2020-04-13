@@ -16,7 +16,6 @@ class FlatDetails extends PureComponent {
 
 	render() {
 		const { values } = this.props
-		console.log(values.streetError)
 		return (
 			<Form>
 				<Container id='flat-details-container'>

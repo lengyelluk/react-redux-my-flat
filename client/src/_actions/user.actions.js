@@ -6,7 +6,8 @@ import history from './../history'
 export const loadUser = () => (dispatch, getState) => {
     //user loading
     dispatch({ type: userConstants.USER_LOADING });
-
+    console.log('user.actions.js => loadUser')
+    console.log(tokenConfig(getState))
     axios.get('/users/auth', tokenConfig(getState))
         .then(res => dispatch({
             type: userConstants.USER_LOADED,
@@ -28,6 +29,7 @@ export const register = ({ username, email, password }) => dispatch => {
             'Content-Type': 'application/json'
         }
     }
+    console.log('user.actions.js => register')
 
     //body
     const body = JSON.stringify({ username, email, password });
@@ -55,6 +57,7 @@ export const login = ({ email, password } ) => dispatch => {
             'Content-Type': 'application/json'
         }
     }
+    console.log('user.actions.js => login')
 
     //body
     const body = JSON.stringify({ email, password });
@@ -76,6 +79,7 @@ export const login = ({ email, password } ) => dispatch => {
 };
 
 export const logout = () => {
+    console.log('user.actions.js => logout')
     history.push('/')
     return {
         type: userConstants.LOGOUT_SUCCESS
@@ -94,6 +98,7 @@ export const tokenConfig = getState => {
             'Content-type': 'application/json'
         }
     }
+    console.log('user.actions.js => tokenConfig')
 
     //if token add to header
     if(token) {

@@ -19,7 +19,7 @@ async function registerUser(user) {
         body: JSON.stringify(user)
     };
 
-    const response = await fetch('https://my-flat-app.herokuapp.com/users/registration', requestOptions);
+    const response = await fetch('/users/registration', requestOptions);
     const data = await response.json();
     return data;
 }
@@ -31,7 +31,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`https://my-flat-app.herokuapp.com/users/authenticate`, requestOptions)
+    return fetch(`/users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes

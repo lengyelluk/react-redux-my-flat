@@ -1,4 +1,4 @@
-import { Icon } from 'semantic-ui-react'
+import { Icon, Grid, Container, Header, Button, Image, GridColumn } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
 
 import {
@@ -9,17 +9,16 @@ import {
     Flatmates,
     Location,
     PreferredFlatmates,
-    Price
+    Price,
+    UserInfo
 } from '../../components'
 
 import { cardService } from '../../_services/card.service'
 import { commentService } from '../../_services/comment.service'
-import { withRouter } from "react-router-dom";
-
-//import commentsData from '../../assets/data/testCommentsData.json'
-//import data from '../../assets/data/testData.json'
+import { withRouter, Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { getCard } from '../../_actions/card.actions';
 import photo from '../../assets/images/flat.jpg'
-
 import './style.css'
 
 class FlatDetailScreen extends PureComponent {
@@ -31,22 +30,18 @@ class FlatDetailScreen extends PureComponent {
             comments: [],
             commentText: '',
             commentUser: '',
-        }
-        this.returnToCardList = this.returnToCardList.bind(this)
+        }   
         this.upvoteCard = this.upvoteCard.bind(this)
     }
 
     async componentDidMount() {
-        const data = await cardService.getById(this.state.currentCardId);
+        await this.props.getCard(this.state.currentCardId);
         const commentsData = await commentService.getAllCommentsByCardId(this.state.currentCardId);
         this.setState({
-            card: data,
+            card: this.props.card.card,
             comments: commentsData,
         })
-    }
-
-    returnToCardList() {
-        this.props.history.push('/cards')
+        console.log(this.state.card)
     }
 
     async upvoteCard() {
@@ -79,36 +74,70 @@ class FlatDetailScreen extends PureComponent {
     render() {
         return (
             <>
-                <h1 className="title">{this.state.card.title}</h1>
-                <div className='card-menu-center'>
-                    <button id='back-button' onClick={this.returnToCardList}>GO BACK TO THE LIST</button>
-                </div>
-                <div className='card-menu-right'>
-                    <button id='upvote' onClick={this.upvoteCard}><Icon fitted name='thumbs up outline' size='big' /></button>
-                    <span className='upvote-number'>Number of Upvotes: {this.state.card.upvotes}</span>
-                </div>
+                <Container id='flat-detail-header'>
+                    <Button> <Link to='/flatList'>GO BACK TO THE LIST</Link></Button>
+                    
+                    
+                    <Header as='h1'>{this.state.card.title}</Header>
+                </Container>
+                <Grid celled>
+                    <Grid.Row only='computer tablet'>
+                        <Grid.Column width={8}>
+                            <Image src={photo} alt="flat" />
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                            <Container textAlign='left'>
+                            {this.state.card.price && <Price price={this.state.card.price.value}
+                                                            currency={this.state.card.price.currency}  /> }
+                            <Location street={this.state.card.street} district={this.state.card.district} />
 
-                <div className="card-grid">
-                    <img src={photo} className='card-image-detail' alt="flat" />
-                    <div className='desc-container'>
-                        {this.state.card.price && <Price price={this.state.card.price.value}
-                                                         currency={this.state.card.price.currency}  /> }
-                        <Location street={this.state.card.street} district={this.state.card.district} />
+                            {this.state.card &&
+                                <Flatmates male={this.state.card.flatmatesMale}
+                                    female={this.state.card.flatmatesFemale} />
+                            }
+                            {this.state.card &&
+                                <PreferredFlatmates
+                                    male={this.state.card.prefFlatmatesMale}
+                                    female={this.state.card.prefFlatmatesFemale}
+                                    couple={this.state.card.prefFlatmatesCouple} />
+                            }
+                            <Availability availability={this.state.card.availabilityDate} stay={this.state.card.minStay} />
+                            <Allowed smoking={this.state.card.smokingAllowed} pet={this.state.card.petAllowed} />
+                            {this.state.card.user && <UserInfo username={this.state.card.user.username} email={this.state.card.user.email} />}
+                            </Container>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                <Grid>
+                    <Grid.Row only='mobile'>
+                        <Grid.Column>
+                            <Image src={photo} alt="flat" />
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row only='mobile'>
+                        <Grid.Column>
+                            <Container textAlign='left'>
+                                {this.state.card.price && <Price price={this.state.card.price.value}
+                                                                currency={this.state.card.price.currency}  /> }
+                                <Location street={this.state.card.street} district={this.state.card.district} />
 
-                        {this.state.card &&
-                            <Flatmates male={this.state.card.flatmatesMale}
-                                female={this.state.card.flatmatesFemale} />
-                        }
-                        {this.state.card &&
-                            <PreferredFlatmates
-                                male={this.state.card.prefFlatmatesMale}
-                                female={this.state.card.prefFlatmatesFemale}
-                                couple={this.state.card.prefFlatmatesCouple} />
-                        }
-                        <Availability availability={this.state.card.availabilityDate} stay={this.state.card.minStay} />
-                        <Allowed smoking={this.state.card.smokingAllowed} pet={this.state.card.petAllowed} />
-                    </div>
-                </div>
+                                {this.state.card &&
+                                    <Flatmates male={this.state.card.flatmatesMale}
+                                        female={this.state.card.flatmatesFemale} />
+                                }
+                                {this.state.card &&
+                                    <PreferredFlatmates
+                                        male={this.state.card.prefFlatmatesMale}
+                                        female={this.state.card.prefFlatmatesFemale}
+                                        couple={this.state.card.prefFlatmatesCouple} />
+                                }
+                                <Availability availability={this.state.card.availabilityDate} stay={this.state.card.minStay} />
+                                <Allowed smoking={this.state.card.smokingAllowed} pet={this.state.card.petAllowed} />
+                                {this.state.card.user && <UserInfo username={this.state.card.user.username} email={this.state.card.user.email} />}
+                            </Container>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
                 <CommentsListPage commentsList={this.state.comments} />
                 <AddCommentForm
                     handleChange={this.handleCommentChange}
@@ -121,5 +150,10 @@ class FlatDetailScreen extends PureComponent {
         )
     }
 }
-export default FlatDetailScreen
+
+const mapStateToProps = (state) => ({
+    card: state.card
+})
+
+export default connect(mapStateToProps, {getCard})(FlatDetailScreen)
 export const FLAT_DETAIL = "/cards/:cardId"

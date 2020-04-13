@@ -1,6 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
 const cardSchema = new Schema({
+	user: {
+		username: {
+			type: String
+		},
+		email: {
+			type: String
+		}
+	},
 	title: {
 		type: String
 	},
@@ -9,7 +17,8 @@ const cardSchema = new Schema({
 	}, 
 	street: {
 		type: String
-	}, price: {
+	}, 
+	price: {
 		value: {type: Number},
 		currency: {type: String}
 	}, 

@@ -34,10 +34,10 @@ class FlatListScreen extends PureComponent {
     }
 
     async componentDidMount() {
-        const data = await cardService.getAll();
+        await this.props.getCards();
         this.setState({
-            cards: data,
-            filteredCards: data,
+            cards: this.props.card.cards,
+            filteredCards: this.props.card.cards,
         })
     }
 
@@ -153,7 +153,10 @@ class FlatListScreen extends PureComponent {
                     <p>Just click on the photo and more details will be displayed. Don't forget that you need to register/login
                         in order to see the details
                     </p>
-                    <p>Special hint: Use the filter to to narrow the search result</p>
+                    <p>Special hint: Use the filter to narrow the search result. Some people prefer to share a flat only with women or men, 
+                        choosing your gender will help you to see only the relevant listings. You may want to limit the number of persons living
+                         in the flat or monthly price for rent. 
+                    </p>
                 </Container>
                     <Form onSubmit={this.resetFilters}>
                         <Form.Group inline>

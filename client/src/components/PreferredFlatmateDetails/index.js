@@ -10,7 +10,6 @@ class PreferredFlatmateDetails extends PureComponent {
 
 	handleChange = () => {
 		this.setState({ prefFlatmatesMale: !this.state.prefFlatmatesMale })
-		console.log('test');
 	}
 
 	saveAndContinue = e => {

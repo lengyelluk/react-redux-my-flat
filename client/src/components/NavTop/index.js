@@ -17,7 +17,6 @@ class NavTop extends PureComponent {
 	}
 
 	handleItemClick = (e) => {
-		console.log(e.target.name);
 		this.setState({ active: e.target.name })
 	}
 
@@ -26,8 +25,6 @@ class NavTop extends PureComponent {
 
 		const { isAuthenticated, user } = this.props;
 		const { active } = this.state;
-		console.log('ACTIVE: ', active)
-		console.log('condition: ', this.state.active === 'home' )
 		const userWelcomeMsg = <Link to='#'
 								className='welcome-msg'>Welcome {user}</Link>
 

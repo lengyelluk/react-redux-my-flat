@@ -1,12 +1,13 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Icon, Container, Header } from 'semantic-ui-react'
 import './style.css'
 
 
 export default function Availability(props) {
 	return (
-		<>	<h3 className="heading">Availability</h3>
-			<p><Icon fitted name='calendar alternate outline' size='big' />Available from {props.availability} with minimal stay {props.stay} months</p>
-		</>
+		<Container>
+			<Header as='h3'>Availability</Header>
+			<Header as='h5' dividing id='avail-header'><Icon fitted name='calendar alternate outline' size='big' />From {props.availability}, at least for {props.stay} months</Header>
+		</Container>
 	)
 }

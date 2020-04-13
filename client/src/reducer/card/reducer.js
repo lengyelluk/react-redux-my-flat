@@ -11,9 +11,15 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type) {
         case cardConstants.GET_CARDS:
+            console.log('reducer payload', action.payload)
             return {
-                ...state,
                 cards: action.payload,
+                loading: false
+            }
+        case cardConstants.GET_CARD:
+            console.log('GET CARD reducer', action.payload)
+            return {
+                card: action.payload,
                 loading: false
             }
         case cardConstants.ADD_CARD:

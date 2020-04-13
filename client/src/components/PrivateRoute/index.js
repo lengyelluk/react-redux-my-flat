@@ -10,6 +10,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
             console.log('current User: ', currentUser)
             if (!currentUser) {
                 // not logged in so redirect to login page with the return url
+                console.log('not logged in')
                 return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
             }
 

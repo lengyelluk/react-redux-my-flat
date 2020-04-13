@@ -14,7 +14,7 @@ async function getAll() {
 			headers: { 'Content-Type': 'application/json' }
 		};
 		//const response = await fetch('http://ec2-18-195-246-219.eu-central-1.compute.amazonaws.com/cards', requestOptions);
-		const response = await fetch('https://my-flat-app.herokuapp.com/cards', requestOptions);
+		const response = await fetch('https://new-my-flat-app.herokuapp.com//cards', requestOptions);
 		const data = await response.json();
 		console.log('data: ', data);
 		return data;
@@ -26,7 +26,7 @@ async function getById(cardId) {
 			headers: { 'Content-Type': 'application/json' }
 		};
 		//const response = await fetch(`http://ec2-18-195-246-219.eu-central-1.compute.amazonaws.com/cards/${cardId}`, requestOptions);
-		const response = await fetch(`https://my-flat-app.herokuapp.com/cards/${cardId}`, requestOptions);
+		const response = await fetch(`https://new-my-flat-app.herokuapp.com/cards/${cardId}`, requestOptions);
 		const data = await response.json();
 		console.log('data: ', data);
 		return data;
@@ -38,14 +38,14 @@ async function upvoteCard(cardId) {
 		headers: { 'Content-Type': 'application/json' }
 	};
 	console.log('here');
-	const response = await fetch(`https://my-flat-app.herokuapp.com/cards/${cardId}/upvote`, requestOptions);
+	const response = await fetch(`https://new-my-flat-app.herokuapp.com/cards/${cardId}/upvote`, requestOptions);
 	const data = await response.json();
 	console.log('new upvotes: ', data);
 	return data;
 }
 
 async function saveCard(card) {
-        console.log(card);
+        console.log('CARD in card service:', card);
 		const requestOptions = {
 			method: 'POST',
 			body: JSON.stringify(card),
@@ -53,7 +53,7 @@ async function saveCard(card) {
 		};
 
 		//const response = await fetch('http://ec2-18-195-246-219.eu-central-1.compute.amazonaws.com/cards', requestOptions);
-		const response = await fetch('https://my-flat-app.herokuapp.com/cards', requestOptions);
+		const response = await fetch('https://new-my-flat-app.herokuapp.com/cards', requestOptions);
 		const data = await response.json();
 		return data;
 	}

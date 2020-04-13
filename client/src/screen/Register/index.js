@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
 import React, { PureComponent } from 'react'
 import { Form, Button, Container, Header, Message } from 'semantic-ui-react'
-import { Register } from '../../components'
-import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
 import { register } from '../../_actions/user.actions';
 import { clearErrors } from '../../_actions/error.actions';

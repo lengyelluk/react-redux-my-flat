@@ -1,0 +1,7 @@
+#contact-header {
+    margin: 1em 0;
+    font-weight: normal;
+    padding-bottom: .21428571rem;
+	border-bottom: 1px solid rgba(34,36,38,.15);
+	text-align: left;
+}

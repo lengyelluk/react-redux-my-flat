@@ -1,8 +1,6 @@
 import { Link, withRouter } from 'react-router-dom'
 import React, { PureComponent } from 'react'
 import { Form, Button, Container, Header, Message } from 'semantic-ui-react'
-import { Register } from '../../components'
-import { authenticationService } from '../../_services/authentication.service'
 import { connect } from 'react-redux';
 import { login } from '../../_actions/user.actions';
 import { clearErrors } from '../../_actions/error.actions';
@@ -27,7 +25,6 @@ class LoginScreen extends PureComponent {
         if(error !== prevProps.error) {
             //check for register errors if new error found
             if(error.id === 'LOGIN_FAIL') {
-                console.log('is not null:', error.msg.msg)
                 this.setState({
                     msg: error.msg.msg,
                     email: '',

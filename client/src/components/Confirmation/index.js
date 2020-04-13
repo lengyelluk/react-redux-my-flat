@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { addCard } from '../../_actions/card.actions'
 import './style.css'
 import { cardService } from '../../_services/card.service';
+import storage from 'localforage'
 
 class Confirmation extends PureComponent {
 
@@ -12,20 +13,30 @@ class Confirmation extends PureComponent {
 		e.preventDefault()
 		const { values } = this.props;
 		const priceObject = {price: {value: values.price, currency: 'EUR'}};
-		const finalObject = {...values, ...priceObject};
-		const data = await cardService.saveCard(finalObject);
+		const userObject = await this.getUserData();
+		console.log('userObject', userObject)
+		const finalObject = {...values, ...priceObject, ...userObject};
+		//save card
+		this.props.addCard(finalObject);
 
 		const newCard = {
 			...finalObject
 		};
 		console.log('card to be added: ', newCard);
-		this.props.addCard(newCard);
+		console.log(newCard)
+		//this.props.addCard(newCard);
 		//move to confirmation page
        	this.props.nextStep()
-    }
+	}
+
+	async getUserData() {
+		  const username = await storage.getItem('username');
+		  const email = await storage.getItem('email');
+		  return { user: {username, email} }
+	}
 
     back  = (e) => {
-        e.preventDefault()
+		e.preventDefault()
         this.props.prevStep()
     }
 
@@ -33,7 +44,7 @@ class Confirmation extends PureComponent {
     render() {
     	const {values: { district, street, price, availabilityDate, minStay,
 			flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale,
-			prefFlatmatesCouple, petAllowed, smokingAllowed }} = this.props
+			prefFlatmatesCouple, petAllowed, smokingAllowed, user }} = this.props
 			console.log('props: ', this.props);
 			return(
 				<>
@@ -93,8 +104,10 @@ class Confirmation extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
-	card: state.card
-})
+const mapStateToProps = state => {
+	return {
+		card: state.card
+	}
+}
 
-export default connect(mapStateToProps, { addCard })(Confirmation)
+export default connect(mapStateToProps, {addCard})(Confirmation)

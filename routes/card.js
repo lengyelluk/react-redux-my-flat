@@ -30,7 +30,7 @@ router.post('/', auth, async (req, res) => {
     prefFlatmatesCouple: req.body.prefFlatmatesCouple,
     petAllowed: req.body.petAllowed,
     smokingAllowed: req.body.smokingAllowed,
-    //user: req.context.me.id,
+    user: req.body.user,
   });
 
   return res.send(card);

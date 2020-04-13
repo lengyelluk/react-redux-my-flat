@@ -5,7 +5,6 @@ import './style.css'
 
 export default function CommentsListPage(props) {
 	const comments = Array.from(props.commentsList)
-	console.log('COMMENTS:', comments)
 	if (comments.length == 0) {
 		return <h3 className='comments-heading'>No Comments</h3>
 	} else {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
+import { Icon, Container, Header } from 'semantic-ui-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSmoking, faDog } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
@@ -7,18 +7,18 @@ import './style.css'
 
 export default function Allowed(props) {
 	return (
-		<>
-			<h3 className="heading">Allowed</h3>
-			<div className='inline'>
-				{props.smoking ?
-					(<span><FontAwesomeIcon icon={faSmoking} size='lg' />Smoking Allowed</span>)
-					:
-					(<span><Icon fitted name='dont' size='big' className='no-left-padding' />Smoking not allowed</span>)}
-				{props.pet ?
-					(<span><FontAwesomeIcon icon={faDog} size='lg' />Pet Allowed</span>)
-					:
-					(<span> <Icon fitted name='dont' size='big' className='no-left-padding' />Pet not allowed</span>)}
-			</div>
-		</>
+		<Container>
+		<Header as='h3'>Allowed</Header>
+		<div id='inline-allow'>
+						{props.smoking ?
+							(<span><FontAwesomeIcon icon={faSmoking} size='lg' />Smoking allowed</span>)
+							:
+							(<span><Icon fitted name='dont' size='big' className='no-left-padding' />No smoking</span>)}
+						{props.pet ?
+							(<span id='pet-allow'><FontAwesomeIcon icon={faDog} size='lg' />Pets allowed</span>)
+							:
+							(<span id='pet-allow'> <Icon fitted name='dont' size='big' className='no-left-padding' />No pets</span>)}
+					</div>
+		</Container>
 	)
 }
