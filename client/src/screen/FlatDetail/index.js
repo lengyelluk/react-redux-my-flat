@@ -138,14 +138,7 @@ class FlatDetailScreen extends PureComponent {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                <CommentsListPage commentsList={this.state.comments} />
-                <AddCommentForm
-                    handleChange={this.handleCommentChange}
-                    handleSubmit={this.handleCommentFormSubmit}
-                    cardId={this.state.card._id}
-                    user={this.state.commentUser}
-                    text={this.state.commentText}
-                />
+                
             </>
         )
     }
