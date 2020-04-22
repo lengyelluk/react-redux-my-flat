@@ -13,12 +13,13 @@ class RegisterScreen extends PureComponent {
 		this.state = {
             username: '',
 			email: '',
-			password: '',
+            password: '',
+            passwordConfirmation: '',
 			msg: null
 		};
 
 		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     };
     
     componentDidUpdate(prevProps) {
@@ -26,9 +27,10 @@ class RegisterScreen extends PureComponent {
         if(error !== prevProps.error) {
             //check for register errors if new error found
             if(error.id === 'REGISTER_FAIL') {
-                console.log('is not null:', error.msg.msg)
                 this.setState({
-                    msg: error.msg.msg
+                    msg: error.msg.msg,
+                    password: '',
+                    passwordConfirmation: '',
                 });
             } else {
                 this.setState({
@@ -38,16 +40,15 @@ class RegisterScreen extends PureComponent {
         }
     }
 
-
 	onChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value });
 	}
 
 	onSubmit = e => {
         e.preventDefault();
-        const { username, email, password } = this.state;
+        const { username, email, password, passwordConfirmation } = this.state;
         const newUser = {
-            username, email, password
+            username, email, password, passwordConfirmation
         };
         this.props.register(newUser);
     }
@@ -77,6 +78,7 @@ class RegisterScreen extends PureComponent {
                                     placeholder='John'
                                     name='username'
                                     onChange={this.onChange}
+                                    value={this.state.username}
                                     />
                             </Form.Field>	
                             <Form.Field
@@ -86,6 +88,7 @@ class RegisterScreen extends PureComponent {
                                     placeholder='john.smith@email.com'
                                     name='email'
                                     onChange={this.onChange}
+                                    value={this.state.email}
                                     />
                             </Form.Field>
                             <Form.Field>
@@ -95,10 +98,29 @@ class RegisterScreen extends PureComponent {
                                     name='password'
                                     placeholder='Super secret password'
                                     onChange={this.onChange}
+                                    value={this.state.password}
+                                    />
+                            </Form.Field>
+                            <Form.Field>
+                                <label>Password confirmation</label>
+                                <Form.Input
+                                    type='password'
+                                    name='passwordConfirmation'
+                                    placeholder='Super secret password again'
+                                    onChange={this.onChange}
+                                    value={this.state.passwordConfirmation}
                                     />
                             </Form.Field>
                         </Form.Group>
-                        <Button color='green'>Register</Button>
+                        <Button
+                            color='green'
+                            disabled={
+                                !this.state.username ||
+                                !this.state.email ||
+                                !this.state.password ||
+                                !this.state.passwordConfirmation
+                            }
+                            >Register</Button>
                     </Form>
                 </div>
         )

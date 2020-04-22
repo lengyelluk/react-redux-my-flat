@@ -3,7 +3,8 @@ import React, { PureComponent } from 'react'
 import { 
     Confirmation, 
     FlatDetails, 
-    FlatmateDetails, 
+    FlatmateDetails,
+    Information, 
     PreferredFlatmateDetails,
     ProgressBar,
     RentDetails,
@@ -14,7 +15,7 @@ import './style.css'
 
 class AddFlatScreen extends PureComponent {
     state = {
-		step: 1,
+		step: 0,
 		district: 'Stare Mesto',
 		street: '',
 		title: '',
@@ -36,7 +37,7 @@ class AddFlatScreen extends PureComponent {
 		const { step, percent } = this.state;
 		this.setState({
 			step: step + 1,
-			percent: percent + 25
+			percent: percent + 20
 		})
 	}
 
@@ -44,7 +45,7 @@ class AddFlatScreen extends PureComponent {
 		const { step, percent } = this.state;
 		this.setState({
 			step: step - 1,
-			percent: percent - 25
+			percent: percent - 20
 		})
 	}
 
@@ -90,12 +91,24 @@ class AddFlatScreen extends PureComponent {
             flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale,
             streetError, prefFlatmatesCouple, smokingAllowed, petAllowed };
         switch(step) {
+            case 0:
+                return (
+                    <>
+                        <div className='content-addFlat'>
+                            <Information
+                                nextStep={this.nextStep}
+                                values={values}
+                                />
+                        </div>
+                    </>
+                )
             case 1:
                 return (
                         <>
                             <div className='content-addFlat'>
                                 <FlatDetails
                                     nextStep={this.nextStep}
+                                    prevStep={this.prevStep}
                                     handleChange={this.handleChange}
                                     values={values}
                                 />

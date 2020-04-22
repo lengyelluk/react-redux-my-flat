@@ -1,17 +1,33 @@
 import React, { PureComponent } from 'react'
-import { Form, Button, Container, Header } from 'semantic-ui-react'
+import { Form, Button, Container, Header, Message } from 'semantic-ui-react'
 import './style.css'
 
 class FlatDetails extends PureComponent {
+	constructor(props) {
+		super(props)
+		this.state={
+			msg: null,
+		}
+	}
+
+	back = e => {
+		e.preventDefault()
+		this.props.prevStep()
+	}
+
 	saveAndContinue = e => {
 		e.preventDefault()
 		//declare error in case of more validation
 		let error = false;
 		//check each validation on the stage
 		if(this.props.values.street === '') {
-			console.log(true)
+			this.setState({ msg: 'Street cannot be empty' })
+		} else if(this.props.values.title === '') {
+			this.setState({ msg: 'Title cannot be empty' })
+		} else {
+			this.setState({ msg: null })
+			this.props.nextStep()
 		}
-		this.props.nextStep()
 	}
 
 	render() {
@@ -21,7 +37,15 @@ class FlatDetails extends PureComponent {
 				<Container id='flat-details-container'>
 				<Header as='h1'>Where is the flat?</Header>
 				<p>Choose the city district and write down the street</p>
-				<p>Title of your listing should in a few words describe the flat/room and attract your potential flatmates</p>
+				<p>Title of your listing should in a few words describe the flat/room and attract your potential flatmates. For instance,
+					 Cozy room in city centre
+				</p>
+				<div>{this.state.msg ? 
+					<Message>
+                        <Message.Header>{this.state.msg}</Message.Header>
+					</Message> 
+					: null}
+				</div>
 				</Container>
 				<Form.Group>	
 					<Form.Field label='City District' 
@@ -58,7 +82,11 @@ class FlatDetails extends PureComponent {
 							/>
 					</Form.Field>
 				</Form.Group>
-				<Button color='green' onClick={this.saveAndContinue} id='flat-details-button'>Save and Continue</Button>
+				<Button color='red' onClick={this.back}>Back</Button>
+				<Button color='green' 
+						onClick={this.saveAndContinue} 
+						id='flat-details-button'
+						>Save and Continue</Button>
 			</Form>
 		)
 	}

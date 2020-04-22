@@ -17,6 +17,13 @@ router.post('/login', (req, res) => {
 		return res.status(400).json({msg: 'Please enter all fields'});
 	}
 
+	//email is valid
+	const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const emailValid = regexp.test(email);
+	if(!emailValid) {
+		return res.status(400).json({msg: 'Please enter a valid email address'});
+	}
+
 	User.findOne({ email })
 		.then(user => {
 			if(!user) return res.status(400).json({ msg: 'User does not exist' }); 
@@ -66,13 +73,35 @@ router.get('/registration', async (req, res) => {
 	
 
 //for user registration
-//missing validation if the user is already in database
 router.post('/registration', (req, res, next) => {
-	const { username, email, password } = req.body;
+	const { username, email, password, passwordConfirmation } = req.body;
 	//simple validation
-	if(!username || !email || !password) {
+	if(!username || !email || !password || !passwordConfirmation) {
 		return res.status(400).json({msg: 'Please enter all fields'});
 	}
+	//username is at least 3 char long
+	if( username.length < 3) {
+		return res.status(400).json({msg: 'Username must be at least 3 characters long'})
+	}
+
+	//email is valid
+	const regexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const emailValid = regexp.test(email);
+	if(!emailValid) {
+		return res.status(400).json({msg: 'Please enter a valid email address'});
+	}
+
+	//password is long enough
+	if( password.length < 8 ) {
+		return res.status(400).json({ msg: 'The password must be at least 8 characters long' })
+	}
+
+	//password and password confirmation are the same
+	const passwordValid = password === passwordConfirmation;
+	if(!passwordValid) {
+		return res.status(400).json({msg: 'Password and password confirmation do not match'})
+	}
+
 
 	//check for existing user
 	User.findOne({ email })

@@ -1,20 +1,25 @@
-import { Form, Button, Checkbox, Container, Header, Segment } from 'semantic-ui-react'
+import { Form, Button, Checkbox, Container, Header, Segment, Message } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
 import './style.css'
 
 class PreferredFlatmateDetails extends PureComponent {
-	
-	state = {
-		prefFlatmatesMale: false
-	}
-
-	handleChange = () => {
-		this.setState({ prefFlatmatesMale: !this.state.prefFlatmatesMale })
+	constructor(props) {
+		super(props)
+		this.state = {
+			msg: null
+		}
 	}
 
 	saveAndContinue = e => {
 		e.preventDefault()
-		this.props.nextStep()
+		const isValid = this.props.values.prefFlatmatesMale || this.props.values.prefFlatmatesFemale
+		if(!isValid) {
+			this.setState({ msg: 'With men or with women? Select at least one of those options'})
+		} else {
+			this.setState({ msg: null })
+			this.props.nextStep()
+		}
+		
 	}
 
 	back = e => {
@@ -33,6 +38,12 @@ class PreferredFlatmateDetails extends PureComponent {
 					</p>
 				</Container>
 				<p>Toggle the buttons if you do agree with the statements next to the button</p>
+				<div>{this.state.msg ? 
+					<Message>
+                        <Message.Header>{this.state.msg}</Message.Header>
+					</Message> 
+					: null}
+				</div>
 				<Segment compact>
 					<Checkbox
 						toggle

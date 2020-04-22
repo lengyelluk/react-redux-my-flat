@@ -41,7 +41,6 @@ class FlatDetailScreen extends PureComponent {
             card: this.props.card.card,
             //comments: commentsData,
         })
-        
     }
 
     async upvoteCard() {
