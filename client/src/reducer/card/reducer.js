@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         case cardConstants.ADD_CARD:
             return {
                 ...state,
-                cards: [action.payload, ...state.cards]
+                //cards: [action.payload, ...state.cards]
             }
         case cardConstants.CARDS_LOADING:
             return {
