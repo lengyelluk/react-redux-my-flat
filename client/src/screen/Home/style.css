@@ -9,8 +9,9 @@
 	justify-content: center;
 }
 
-.menu-option-heading {
+h4.menu-option-heading {
 	font-size: 25px;
+	margin-bottom: .5em;
 }
 
 .menu-option-photo {
@@ -18,3 +19,16 @@
 	border: 1px solid gray;
 	border-radius: 10px;
 }
+
+.img-container {
+	position: relative;
+	text-align: center;
+	color: white;
+  }
+
+.top-left {
+	position: absolute;
+	top: 1em;
+	left: 3.5em;
+	font-size: 1.5em;
+  }

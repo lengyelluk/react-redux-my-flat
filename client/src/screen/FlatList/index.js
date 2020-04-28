@@ -1,6 +1,6 @@
-import { Form, Input, Button, Header, Container, Grid } from 'semantic-ui-react'
+import { Form, Input, Button, Header, Container, Grid, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import React, { PureComponent } from 'react'
-import { CardList, PriceInput } from '../../components'
+import { CardList, PriceInput, EmptyCardList } from '../../components'
 import { cardService } from '../../_services/card.service';
 import './style.css'
 
@@ -145,6 +145,7 @@ class FlatListScreen extends PureComponent {
 
 
     render() {
+        console.log('filtered cards to be empty: ', this.state.filteredCards)
         return (
             <>
                 <Container id='flat-list-header'>
@@ -227,14 +228,17 @@ class FlatListScreen extends PureComponent {
                                 color='red'/>
                         </Form.Group>
                     </Form>
+                    {this.state.filteredCards.length > 0 ? 
                 <CardList cards={this.state.filteredCards} />
+                 : <EmptyCardList loader={this.props.loading}/>} 
             </>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    card: state.card
+    card: state.card,
+    loading: state.card.loading
 })
 
 export default connect(mapStateToProps, { getCards })(FlatListScreen)

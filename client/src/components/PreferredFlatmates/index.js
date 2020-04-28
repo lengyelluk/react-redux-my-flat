@@ -8,9 +8,11 @@ import './style.css'
 export default function PreferredFlatmates(props) {
 	const prefFlatmateMale = props.male
 	const prefFlatmateFemale = props.female
+	const prefFlatmatesCouple = props.couple
 	const male = prefFlatmateMale ? 'Male' : ''
 	const female = prefFlatmateFemale ? 'Female' : ''
 	const both = male && female
+	const couple = prefFlatmatesCouple ? 'couples allowed' : 'no couples'
 
 
 	return (
@@ -19,6 +21,7 @@ export default function PreferredFlatmates(props) {
 			<p id='pref-flat-header'><Icon name='mars' size='big' />
 							<Icon fitted name='venus' size='big' className='no-left-padding' />
 							{both ? 'Males or females' : { male } ? 'Males only' : 'Females only'}
+							{` (${couple})`}
 			</p>
 		</Container>
 	)

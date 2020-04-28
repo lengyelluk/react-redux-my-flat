@@ -56,6 +56,9 @@ const cardSchema = new Schema({
 	creationDate: {
 		type: Date,
 		default: Date.now
+	},
+	url: {
+		type: String,
 	}
 });
 

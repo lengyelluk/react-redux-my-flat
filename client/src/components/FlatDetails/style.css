@@ -6,6 +6,10 @@ Button[disabled] {
 	margin: 2em 0;
 }
 
+#msg-header {
+	margin: 0.3em;
+}
+
 @media only screen and (max-width: 768px) { 
 	#flat-details-button {
 		margin-top: 1em;

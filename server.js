@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import multer from 'multer'
 import models, { connectDb } from './models';
 import routes from './routes';
 import auth from './lib/auth';
@@ -37,6 +38,9 @@ app.use(async (req, res, next) => {
 	}
 })
 
+//static path reference to uploaded file
+app.use('/uploads', express.static('uploads'));
+
 app.use(async (req, res, next) => {
 	req.context = {
 		models
@@ -50,6 +54,7 @@ app.use('/session', routes.session);
 app.use('/users', routes.user);
 app.use('/messages', routes.message);
 app.use('/comments', routes.comment);
+app.use('/images', routes.image);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname + '/client/build/index.html'));

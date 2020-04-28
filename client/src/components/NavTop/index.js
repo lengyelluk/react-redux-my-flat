@@ -46,11 +46,11 @@ class NavTop extends PureComponent {
 				</Responsive>
 				<Responsive as={Item} minWidth={690} id='contact'>
 					<Link to='/contact' onClick={this.handleItemClick} className={this.state.active === 'contact' ? 'active' : 'nonactive'}
-					name='contact'>Contact</Link>
+					name='contact'>Contact me</Link>
 				</Responsive>
 				<Responsive id='about' as={Item} minWidth={690}>
 					<Link name='about' onClick={this.handleItemClick} className={this.state.active === 'about' ? 'active' : 'nonactive'}
-					to='/about'>About me</Link>
+					to='/about'>About</Link>
 				</Responsive>
 				{isAuthenticated ?
 				<Fragment>

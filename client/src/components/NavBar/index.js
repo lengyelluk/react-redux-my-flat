@@ -30,8 +30,8 @@ class NavBar extends PureComponent {
 				<Link to="/" onClick={closeNav}>Home</Link>
 				<Link to="/addFlat" onClick={closeNav}>Rent out a room</Link>
 				<Link to="/flatList" onClick={closeNav}>Find a room</Link>
-				<Link to="/contact" onClick={closeNav}>Contact</Link>	
-				<Link to="/about" onClick={closeNav}>About me</Link>
+				<Link to="/contact" onClick={closeNav}>Contact me</Link>	
+				<Link to="/about" onClick={closeNav}>About</Link>
 				{ isAuthenticated ? authLinks : guestLinks }
 			</div>
 		</div>

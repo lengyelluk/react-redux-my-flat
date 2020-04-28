@@ -7,6 +7,8 @@ class FlatDetails extends PureComponent {
 		super(props)
 		this.state={
 			msg: null,
+			streetError: false,
+			titleError: false
 		}
 	}
 
@@ -18,12 +20,24 @@ class FlatDetails extends PureComponent {
 	saveAndContinue = e => {
 		e.preventDefault()
 		//declare error in case of more validation
-		let error = false;
+		let titleErrorCheck = false;
+		let streetErrorCheck = false;
+		let message = [];
 		//check each validation on the stage
 		if(this.props.values.street === '') {
-			this.setState({ msg: 'Street cannot be empty' })
-		} else if(this.props.values.title === '') {
-			this.setState({ msg: 'Title cannot be empty' })
+			message.push('Street cannot be empty')
+			streetErrorCheck = true;
+		}
+	 	if(this.props.values.title === '') {
+			message.push('Title cannot be empty')
+			titleErrorCheck = true;
+		 }
+		if(titleErrorCheck || streetErrorCheck) {	
+			this.setState({ 
+				msg: message,
+				streetError: streetErrorCheck,
+				titleError: titleErrorCheck
+			 })
 		} else {
 			this.setState({ msg: null })
 			this.props.nextStep()
@@ -33,6 +47,7 @@ class FlatDetails extends PureComponent {
 	render() {
 		const { values } = this.props
 		return (
+			<>
 			<Form>
 				<Container id='flat-details-container'>
 				<Header as='h1'>Where is the flat?</Header>
@@ -42,7 +57,8 @@ class FlatDetails extends PureComponent {
 				</p>
 				<div>{this.state.msg ? 
 					<Message>
-                        <Message.Header>{this.state.msg}</Message.Header>
+						{this.state.msg.map((message, key) => <Message.Header id='msg-header' key={key}>{message}</Message.Header>)}
+						<p>Please make the necessary changes and hit Save and Continue button again</p>
 					</Message> 
 					: null}
 				</div>
@@ -68,6 +84,7 @@ class FlatDetails extends PureComponent {
 					<Form.Field>
 						<label>Street</label>
 						<Form.Input
+							error={this.state.streetError}
 							placeholder='Street name'
 							onChange={this.props.handleChange('street')}
 							defaultValue={values.street}
@@ -76,6 +93,7 @@ class FlatDetails extends PureComponent {
 					<Form.Field>
 						<label>Title</label>
 						<Form.Input
+							error={this.state.titleError}
 							placeholder='Title'
 							onChange={this.props.handleChange('title')}
 							defaultValue={values.title}
@@ -88,6 +106,7 @@ class FlatDetails extends PureComponent {
 						id='flat-details-button'
 						>Save and Continue</Button>
 			</Form>
+		</>
 		)
 	}
 }

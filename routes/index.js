@@ -3,6 +3,7 @@ import session from './session';
 import user from './user';
 import message from './message';
 import comment from './comment';
+import image from './image';
 
 export default {
 	card,
@@ -10,4 +11,5 @@ export default {
 	user,
 	message,
 	comment,
+	image
 };

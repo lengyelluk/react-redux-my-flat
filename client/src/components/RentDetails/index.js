@@ -7,18 +7,38 @@ class RentDetails extends PureComponent {
 	constructor(props) {
 		super(props)
 		this.state = {
-			msg: null
+			msg: null,
+			priceError: false,
+			minStayError: false,
+			availabilityDateError: false
 		}
 	}
 
 	saveAndContinue = e => {
 		e.preventDefault()
+		let message = []
+		let priceErrorCheck = false
+		let minStayErrorCheck = false
+		let availabilityDateErrorCheck = false
 		if(this.props.values.price < 1) {
-			this.setState({ msg: 'Price must be at least 1 EUR/month' })
-		} else if(this.props.values.minStay < 1) {
-			this.setState({ msg: 'Minimum rental period is 1 month'})
-		} else if(this.props.values.availabilityDate === '') {
-			this.setState({ msg: 'Pick the date from when is the room on rent' })
+			message.push('Price must be at least 1 EUR/month')
+			priceErrorCheck = true
+		} 
+		if(this.props.values.minStay < 1) {
+			message.push('Minimum rental period is 1 month')
+			minStayErrorCheck = true
+		} 
+		if(this.props.values.availabilityDate === '') {
+			message.push('Pick the date from when is the room on rent')
+			availabilityDateErrorCheck = true
+		} 
+		if(priceErrorCheck || minStayErrorCheck || availabilityDateErrorCheck) {
+			this.setState({
+				msg: message,
+				priceError: priceErrorCheck,
+				minStayError: minStayErrorCheck,
+				availabilityDateError: availabilityDateErrorCheck
+			})
 		} else {
 			this.setState({ msg: null })
 			this.props.nextStep()
@@ -39,14 +59,16 @@ class RentDetails extends PureComponent {
 					<p>What is the rent for the room? Is there a minimum rental period? And when can your new flatmate move in?</p>
 					<div>{this.state.msg ? 
 					<Message>
-                        <Message.Header>{this.state.msg}</Message.Header>
+						{this.state.msg.map((message, key) => <Message.Header id='msg-header' key={key}>{message}</Message.Header>)}
+						<p>Please make the necessary changes and hit Save and Continue button again</p>
 					</Message> 
 					: null}
-					</div>
+				</div>
 				</Container>
 				<Form.Field>
 						<label>Price in EUR/month</label>
 						<Form.Input
+							error={this.state.priceError}
 							type='number' min={1}
 							placeholder='300 EUR/month'
 							onChange={this.props.handleChange('price')}
@@ -56,6 +78,7 @@ class RentDetails extends PureComponent {
 				<Form.Field>
 						<label>Minimum duration of rent in months</label>
 						<Form.Input
+							error={this.state.minStayError}
 							type='number' min={1}
 							placeholder='5 months'
 							onChange={this.props.handleChange('minStay')}
@@ -65,6 +88,7 @@ class RentDetails extends PureComponent {
 				<Form.Field>
 					<label>Available from</label>
 					<DateInput
+						error={this.state.availabilityDateError}
 						clearable
 						inline
 						clearIcon={<Icon name='remove' color='red' />}

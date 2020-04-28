@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 
 import { 
     Confirmation, 
+    CustomUploadPhoto,
     FlatDetails, 
     FlatmateDetails,
     Information, 
@@ -29,7 +30,8 @@ class AddFlatScreen extends PureComponent {
 		prefFlatmatesFemale: false,
 		prefFlatmatesCouple: false,
 		smokingAllowed: false,
-		petAllowed: false,
+        petAllowed: false,
+        photoUrl: '',
 		percent: 0,
 	}
 
@@ -37,7 +39,7 @@ class AddFlatScreen extends PureComponent {
 		const { step, percent } = this.state;
 		this.setState({
 			step: step + 1,
-			percent: percent + 20
+			percent: percent + 15
 		})
 	}
 
@@ -45,7 +47,7 @@ class AddFlatScreen extends PureComponent {
 		const { step, percent } = this.state;
 		this.setState({
 			step: step - 1,
-			percent: percent - 20
+			percent: percent - 15
 		})
 	}
 
@@ -86,10 +88,10 @@ class AddFlatScreen extends PureComponent {
         const { step } = this.state;
         const { district, street, title, price, availabilityDate, minStay,
             flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale, percent,
-            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed} = this.state;
+            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed, photoUrl} = this.state;
         const values = { district, street, title, price, availabilityDate, minStay,
             flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale,
-            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed };
+            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed, photoUrl };
         switch(step) {
             case 0:
                 return (
@@ -165,6 +167,19 @@ class AddFlatScreen extends PureComponent {
                     )
             case 5:
                 return (
+                    <>
+                        <div className='content-addFlat'>
+                            <CustomUploadPhoto
+                                nextStep={this.nextStep}
+                                prevStep={this.prevStep}
+                                values={values}
+                            />
+                        </div>
+                        <ProgressBar percent={percent}/>
+                    </>
+                )
+            case 6:
+                return (
                     <> 
                         <div className='content-addFlat'>
                             <Confirmation
@@ -176,7 +191,7 @@ class AddFlatScreen extends PureComponent {
                         <ProgressBar percent={percent}/>
                     </>
                     )
-            case 6:
+            case 7:
                 return (
                     <Success 
                         values={values}

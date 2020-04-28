@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { Form, Button, List, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { addCard } from '../../_actions/card.actions'
+import { getUrl } from '../../reducer/image/reducer'
 import './style.css'
 import { cardService } from '../../_services/card.service';
 import storage from 'localforage'
@@ -14,8 +15,8 @@ class Confirmation extends PureComponent {
 		const { values } = this.props;
 		const priceObject = {price: {value: values.price, currency: 'EUR'}};
 		const userObject = await this.getUserData();
-		console.log('userObject', userObject)
-		const finalObject = {...values, ...priceObject, ...userObject};
+		const urlObject = {url: this.props.url};
+		const finalObject = {...values, ...priceObject, ...userObject, ...urlObject};
 		//save card
 		this.props.addCard(finalObject);
 
@@ -44,7 +45,7 @@ class Confirmation extends PureComponent {
     render() {
     	const {values: { district, street, price, availabilityDate, minStay,
 			flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale,
-			prefFlatmatesCouple, petAllowed, smokingAllowed, user }} = this.props
+			prefFlatmatesCouple, petAllowed, smokingAllowed, user, photoUrl }} = this.props
 			console.log('props: ', this.props);
 			return(
 				<>
@@ -74,7 +75,7 @@ class Confirmation extends PureComponent {
 							<List.Content>Are you OK to share the flat with men: {prefFlatmatesMale ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Are you OK to share the flat with men: {prefFlatmatesFemale ? 'Yes' : 'No'}</List.Content>
+							<List.Content>Are you OK to share the flat with women: {prefFlatmatesFemale ? 'Yes' : 'No'}</List.Content>
 						</List.Item>
 						<List.Item>
 							<List.Content>Are you OK to share the flat with a couple: {prefFlatmatesCouple ? 'Yes' : 'No'}</List.Content>
@@ -92,22 +93,21 @@ class Confirmation extends PureComponent {
 							<List.Content>Minimum rental period: {minStay} months</List.Content>
 						</List.Item>
 						<List.Item>
-							<List.Content>Availabile from: {availabilityDate}</List.Content>
+							<List.Content>Available from: {availabilityDate}</List.Content>
 						</List.Item>
 					</List>
-
 					<Button color='red' onClick={this.back}>Back</Button>
 					<Button color='green' onClick={this.saveAndContinue}>Confirm</Button>
-					
 				</>
 			)
     }
-}
+}	
 
 const mapStateToProps = state => {
 	return {
-		card: state.card
+		card: state.card,
+		url: state.image.url
 	}
 }
 
-export default connect(mapStateToProps, {addCard})(Confirmation)
+export default connect(mapStateToProps, {addCard, getUrl})(Confirmation)

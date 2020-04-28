@@ -31,6 +31,7 @@ router.post('/', auth, async (req, res) => {
     petAllowed: req.body.petAllowed,
     smokingAllowed: req.body.smokingAllowed,
     user: req.body.user,
+    url: req.body.url
   });
 
   return res.send(card);
