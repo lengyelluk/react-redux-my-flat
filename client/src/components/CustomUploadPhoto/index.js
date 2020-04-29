@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Button, Form, Icon, Progress, Container, Header} from 'semantic-ui-react'
+import { Button, Form, Icon, Progress, Container, Header, Message } from 'semantic-ui-react'
 import { addImage } from '../../_actions/image.actions';
 import { connect } from 'react-redux';
 import './style.css'
@@ -10,13 +10,27 @@ class CustomUploadPhoto extends PureComponent {
 		this.state = {
 			msg: null,
 			fileName: '',
+			uploadError: false
 		}
 	}
 
 	saveAndContinue = e => {
 		e.preventDefault()
-		this.setState({ msg: null })
-		this.props.nextStep()
+		let message = ''
+		let uploadErrorCheck = false
+		if(!this.props.url) {
+			uploadErrorCheck = true
+			message = 'Photo has not been uploaded'
+		}
+		if(uploadErrorCheck) {
+			this.setState({
+				msg: message,
+				uploadError: uploadErrorCheck
+			})
+		} else {
+			this.setState({ msg: null })
+			this.props.nextStep()
+		}
 	}
 
 	back = e => {
@@ -54,6 +68,7 @@ class CustomUploadPhoto extends PureComponent {
 		  this.props.addImage(formData);
 		  this.setState({
 			  fileName: '',
+			  msg: null
 		  })
 		} catch (error) {
 		  console.error(Error(`Error uploading file ${error.message}`));
@@ -67,10 +82,19 @@ class CustomUploadPhoto extends PureComponent {
 				<>
 					<Form onSubmit={this.onFormSubmit}>
 						<Container id='photo-details-container'>
-							<Header as='h1' className='ui centered'>Can you show how does the room look like?</Header>
-							<p>Take the best photo of the room, find it on your drive and hit <strong>Upload</strong>.
-							Once you receive back the message that photo has been uploaded, move to the next step by clicking
-							 <strong>Save and Continue</strong> button.</p>
+							<Header as='h1' className='ui centered'>How does the room look like?</Header>
+							<p>Take the best photo of the room, find it on your drive and hit <strong>Upload</strong>. The maximum size 
+							of the photo is 4 MB.
+							Once you receive back the message that photo has been uploaded, move to the next step by clicking 
+							   <strong> Save and Continue</strong> button.</p>
+							  <div>{this.state.msg ? 
+							<Message>
+								<Message.Header id='msg-header'>{this.state.msg}</Message.Header>
+								<p>Please choose a file, and hit Upload button. Once you see a confirmation
+									 that Everything worked and your photo has been saved, click on Save and Continue button again</p>
+							</Message> 
+							: null}
+						</div>
 						</Container>
 						<Form.Field>
 						<label>Upload photo</label>
@@ -93,7 +117,7 @@ class CustomUploadPhoto extends PureComponent {
 							readOnly
 							value={this.state.fileName}
 						/>
-						<Button style={{ margin: "20px" }} type="submit">
+						<Button color='teal' style={{ margin: "20px" }} type="submit">
 							Upload
 						</Button>
 						{this.props.url && this.props.url.includes('res.cloudinary.com') ? (

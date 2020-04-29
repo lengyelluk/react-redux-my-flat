@@ -51,7 +51,7 @@ class Confirmation extends PureComponent {
 				<>
 				<Container id='confirmation-container'>
 					<Header as='h1'>Is everything correct?</Header>
-					<p>Please check all the details. If there is any mistake, use the back button, correct the mistake
+					<p>Please check all the details. If there is any mistake, use the <strong>Back button</strong>, correct the mistake
 						and move forward again.</p> 
 					<p>If everything is correct, click <strong>Confirm</strong>. Your listing
 						will be visible immediately.

@@ -32,7 +32,7 @@ class PreferredFlatmateDetails extends PureComponent {
 		return (
 			<Form>
 				<Container id='pref-flatmate-details-container'>
-					<Header as='h1' className='ui centered'>Who would you like to with it?</Header>
+					<Header as='h1' className='ui centered'>Who would be your ideal flatmate?</Header>
 					<p>Maybe you do not want to share a flat with a couple or with a smoker.
 						Be honest and choose the options based on your real preferences.
 					</p>

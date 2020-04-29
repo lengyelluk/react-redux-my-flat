@@ -38,10 +38,10 @@ class HomeScreen extends PureComponent {
                     </Grid.Row>
                     <Grid.Row only="computer tablet">
                         <Grid.Column width={8}>
-                            <Link to={ADD_FLAT} ><img src={require("../../assets/images/rent-room-custom.jpg")} alt='rent out a room' className='menu-option-photo' /></Link>
+                            <Link to={ADD_FLAT} ><img src={require("../../assets/images/rentOutRoomText.jpg")} alt='rent out a room' className='menu-option-photo' /></Link>
                         </Grid.Column>
                         <Grid.Column width={8}>
-                            <Link to={FLAT_LIST} ><img src={require("../../assets/images/find-room-custom.jpg")} alt='find a room' className='menu-option-photo' /></Link>
+                            <Link to={FLAT_LIST} ><img src={require("../../assets/images/findRoomText.jpg")} alt='find a room' className='menu-option-photo' /></Link>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row only='mobile'>
@@ -51,7 +51,7 @@ class HomeScreen extends PureComponent {
                                 <p>The option <Link to={ADD_FLAT}>Rent out a room</Link> is the right for you if you want to find a new flatmate</p>
                                 <p>It is up to you if you do not mind that your new flatmate has a pet or if you are willing to share your cigarettes with another smoker</p>
                                 <p>Basically, you can choose who will be your new flatmate. Just click the image below</p>
-                                <Link to={ADD_FLAT} ><img src={require("../../assets/images/rent-room-custom.jpg")} alt='rent out a room' className='menu-option-photo' />
+                                <Link to={ADD_FLAT} ><img src={require("../../assets/images/rentOutRoomText.jpg")} alt='rent out a room' className='menu-option-photo' />
                                     </Link>
                             </div>
                         </Grid.Column>
@@ -63,7 +63,7 @@ class HomeScreen extends PureComponent {
                                 <p>The option <Link to={FLAT_LIST}>Find a room</Link> is the right for you if you are looking for a free room</p>
                                 <p>You decide how much is too much for rent, which city district is the best for you or how many flamates would you like to have</p>
                                 <p>Basically, you can easily find the right room for you. Just click the image below!</p>
-                                <Link to={FLAT_LIST} ><img src={require("../../assets/images/find-room-custom.jpg")} alt='find a room' className='menu-option-photo' /></Link>
+                                <Link to={FLAT_LIST} ><img src={require("../../assets/images/findRoomText.jpg")} alt='find a room' className='menu-option-photo' /></Link>
                             </div>
                         </Grid.Column>
                     </Grid.Row>
