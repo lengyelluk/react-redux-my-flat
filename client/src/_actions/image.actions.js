@@ -59,3 +59,9 @@ export const setImagesLoading = () => {
         type: imageConstants.IMAGES_LOADING
     }
 }
+
+export const imageAdded = () => {
+    return {
+        type: imageConstants.UPLOAD_FINISH
+    }
+}

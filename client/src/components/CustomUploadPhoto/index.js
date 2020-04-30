@@ -10,7 +10,7 @@ class CustomUploadPhoto extends PureComponent {
 		this.state = {
 			msg: null,
 			fileName: '',
-			uploadError: false
+			uploadError: false,
 		}
 	}
 
@@ -28,7 +28,9 @@ class CustomUploadPhoto extends PureComponent {
 				uploadError: uploadErrorCheck
 			})
 		} else {
-			this.setState({ msg: null })
+			this.setState({ 
+				msg: null,
+			})
 			this.props.nextStep()
 		}
 	}
@@ -60,15 +62,12 @@ class CustomUploadPhoto extends PureComponent {
 	fileUpload = async file => {
 		const formData = new FormData();
 		formData.append("file", file);
-		for(const p of formData) {
-			console.log(p);
-		}
 		
 	try {
 		  this.props.addImage(formData);
 		  this.setState({
 			  fileName: '',
-			  msg: null
+			  msg: null, 
 		  })
 		} catch (error) {
 		  console.error(Error(`Error uploading file ${error.message}`));
@@ -77,7 +76,6 @@ class CustomUploadPhoto extends PureComponent {
 	  }
 
 	render() {
-		const { statusCode } = this.props;
 			return (
 				<>
 					<Form onSubmit={this.onFormSubmit}>

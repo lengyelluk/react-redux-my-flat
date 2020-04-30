@@ -32,6 +32,7 @@ export default function(state = initialState, action) {
             console.log('ADD_IMAGE_state in reducer', action.payload)
             return {
                 url: action.payload.payload.photo.url,
+                statusCode: action.status
                 //cards: [action.payload, ...state.cards]
             }
         case imageConstants.IMAGES_LOADING:
@@ -42,6 +43,12 @@ export default function(state = initialState, action) {
         case imageConstants.UPLOAD_FAIL:
             return {
                 statusCode: action.status,
+                url: '',
+                fileName: ''
+            }
+        case imageConstants.UPLOAD_FINISH:
+            return {
+                statusCode: '',
                 url: '',
                 fileName: ''
             }

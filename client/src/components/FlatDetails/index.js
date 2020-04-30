@@ -46,6 +46,7 @@ class FlatDetails extends PureComponent {
 
 	render() {
 		const { values } = this.props
+		console.log('Values in first step: ', values)
 		return (
 			<>
 			<Form>

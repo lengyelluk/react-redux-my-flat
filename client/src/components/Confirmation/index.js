@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { Form, Button, List, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { addCard } from '../../_actions/card.actions'
+import { imageAdded } from '../../_actions/image.actions'
 import { getUrl } from '../../reducer/image/reducer'
 import './style.css'
 import { cardService } from '../../_services/card.service';
@@ -19,12 +20,11 @@ class Confirmation extends PureComponent {
 		const finalObject = {...values, ...priceObject, ...userObject, ...urlObject};
 		//save card
 		this.props.addCard(finalObject);
-
+		//clear image url
+		this.props.imageAdded();
 		const newCard = {
 			...finalObject
 		};
-		console.log('card to be added: ', newCard);
-		console.log(newCard)
 		//this.props.addCard(newCard);
 		//move to confirmation page
        	this.props.nextStep()
@@ -110,4 +110,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, {addCard, getUrl})(Confirmation)
+export default connect(mapStateToProps, {addCard, getUrl, imageAdded})(Confirmation)

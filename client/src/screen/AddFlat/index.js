@@ -31,7 +31,6 @@ class AddFlatScreen extends PureComponent {
 		prefFlatmatesCouple: false,
 		smokingAllowed: false,
         petAllowed: false,
-        photoUrl: '',
 		percent: 0,
 	}
 
@@ -88,10 +87,10 @@ class AddFlatScreen extends PureComponent {
         const { step } = this.state;
         const { district, street, title, price, availabilityDate, minStay,
             flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale, percent,
-            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed, photoUrl} = this.state;
+            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed } = this.state;
         const values = { district, street, title, price, availabilityDate, minStay,
             flatmatesMale, flatmatesFemale, prefFlatmatesMale, prefFlatmatesFemale,
-            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed, photoUrl };
+            streetError, prefFlatmatesCouple, smokingAllowed, petAllowed };
         switch(step) {
             case 0:
                 return (
