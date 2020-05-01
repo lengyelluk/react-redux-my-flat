@@ -36,7 +36,7 @@ router.post('/login', (req, res) => {
 					jwt.sign(
 						{ id: user.id },
 						process.env.JWT_SECRET,
-						{ expiresIn: 3600 },
+						{ expiresIn: "90d" },
 						(err, token) => {
 							if(err) throw err;
 							
@@ -125,7 +125,7 @@ router.post('/registration', (req, res, next) => {
 							jwt.sign(
 								{ id: user.id },
 								process.env.JWT_SECRET,
-								{ expiresIn: "30d" },
+								{ expiresIn: "90d" },
 								(err, token) => {
 									if(err) throw err;
 									
