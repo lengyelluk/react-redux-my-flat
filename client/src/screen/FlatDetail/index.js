@@ -84,7 +84,7 @@ class FlatDetailScreen extends PureComponent {
                         <Grid.Column width={8}>
                             {this.state.card.url ?
                             <Image src={`${this.state.card.url}`} alt='room photo' /> :
-                            <Image src={require("../../assets/images/flat.jpg")} className='card-image' alt="room photo" />}
+                            null}
                         </Grid.Column>
                         <Grid.Column width={8}>
                             <Container textAlign='left'>

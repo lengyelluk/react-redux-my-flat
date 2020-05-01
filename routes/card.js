@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   	return res.send(cards);
 });
 
-router.get('/:cardId', auth, async (req, res) => {
+router.get('/:cardId', async (req, res) => {
 	const card = await req.context.models.Card.findById(
 		req.params.cardId,
 	); 
