@@ -112,7 +112,9 @@ class FlatDetailScreen extends PureComponent {
                 <Grid>
                     <Grid.Row only='mobile'>
                         <Grid.Column>
-                            <Image src={photo} alt="flat" />
+                            {this.state.card.url ?
+                            <Image src={`${this.state.card.url}`} alt='room photo' /> :
+                            null}
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row only='mobile'>
