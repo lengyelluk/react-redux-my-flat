@@ -18,10 +18,10 @@ function renderCard(card, key) {
 		<Grid.Column key={key} computer={5} tablet={8} mobile={16}>
 			<Container id="card-container">
 				<Header as='h3'>{card.title}</Header>
-				<Link to={`/cards/${card._id}`}>
+				<Link to={`/flatList/${card._id}`}>
 					{card.url ?
 						<Image src={`${card.url}`} alt='room photo' /> :
-						<Image src={require("../../assets/images/flat.jpg")} className='card-image' alt="room photo" />}
+						null}
 				</Link>
 				<Header as='h3'>{card.street}, {card.district}</Header>
 				<p> {card.price.value} {card.price.currency}/month</p>

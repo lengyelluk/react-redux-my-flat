@@ -150,4 +150,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {getCard})(FlatDetailScreen)
-export const FLAT_DETAIL = "/cards/:cardId"
+export const FLAT_DETAIL = "/flatList/:cardId"
